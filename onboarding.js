@@ -32,7 +32,7 @@ continueBtn.addEventListener('click', () => {
         setTimeout(() => {
             alert(`Awesome! You are joining as a ${selectedPrimaryRole.toUpperCase()}.\n\nIn the real app, we will use this to tune your Home Feed!`);
             // To actually redirect in your folder, uncomment the line below:
-            // window.location.href = 'home.html';
+            window.location.href = 'index.html';
         }, 1200);
     }
 });
