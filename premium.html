@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Premium</title>
+    <link rel="stylesheet" href="premium.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="premium-header">
+            <!-- Professional SVG Back Button with History Back Logic -->
+            <div class="back-btn" onclick="window.history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <h1 class="header-title">Upgrade</h1>
+            <!-- Empty space to keep the title perfectly centered -->
+            <div class="placeholder-space"></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="premium-hero">
+                <div class="crown-icon">👑</div>
+                <h2>CineLink <span class="gold-text">PRO</span></h2>
+                <p>Unlock your full potential in Tamil Cinema.</p>
+            </div>
+
+            <!-- Billing Toggle -->
+            <div class="billing-toggle">
+                <div class="toggle-option active" id="btn-monthly" onclick="switchBilling('monthly')">Monthly</div>
+                <div class="toggle-option" id="btn-yearly" onclick="switchBilling('yearly')">Yearly <span class="save-badge">Save 20%</span></div>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="pricing-cards-container">
+                <!-- Free Tier -->
+                <div class="pricing-card free-card">
+                    <h3>Basic</h3>
+                    <div class="price">₹0<span>/mo</span></div>
+                    <ul class="feature-list">
+                        <li>✔️ Create Basic Profile</li>
+                        <li>✔️ Apply to 3 Projects/month</li>
+                        <li>✔️ Standard Discovery</li>
+                        <li class="disabled">❌ Verified Badge</li>
+                        <li class="disabled">❌ Direct Messaging</li>
+                    </ul>
+                    <button class="plan-btn outline-btn">Current Plan</button>
+                </div>
+
+                <!-- Pro Tier (Highlighted) -->
+                <div class="pricing-card pro-card">
+                    <div class="recommended-badge">Recommended</div>
+                    <h3>Pro</h3>
+                    <div class="price" id="pro-price">₹199<span>/mo</span></div>
+                    <ul class="feature-list">
+                        <li>✔️ Verified Talent Badge <span class="verified-icon">✔</span></li>
+                        <li>✔️ Unlimited Project Applications</li>
+                        <li>✔️ Priority in Search Results</li>
+                        <li>✔️ Direct Messaging to Creators</li>
+                        <li>✔️ Ad-free Experience</li>
+                    </ul>
+                    <button class="plan-btn solid-btn">Upgrade to Pro</button>
+                </div>
+            </div>
+
+            <!-- Profile Boost Add-on -->
+            <div class="boost-section">
+                <div class="boost-icon">🚀</div>
+                <div class="boost-info">
+                    <h4>Profile Boost</h4>
+                    <p>Get 10x more visibility for 24 hours.</p>
+                </div>
+                <button class="boost-btn">₹99</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="premium.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Settings</title>
+    <link rel="stylesheet" href="settings.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="settings-header">
+            <div class="back-btn" onclick="window.history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <h1 class="header-title">Settings</h1>
+            <div class="placeholder-space"></div>
+        </header>
+
+        <main class="content">
+            
+            <div class="pro-banner" onclick="window.location.href='premium.html'">
+                <div class="pro-info">
+                    <h3>Get CineLink <span class="gold-text">PRO</span></h3>
+                    <p>Unlock verified badges & unlimited applies.</p>
+                </div>
+                <div class="pro-arrow">➔</div>
+            </div>
+
+            <div class="settings-group">
+                <h3 class="group-title">Account</h3>
+                
+                <div class="setting-item" onclick="window.location.href='edit-profile.html'">
+                    <div class="item-left"><span class="icon">👤</span><span>Personal Information</span></div>
+                    <span class="arrow">➔</span>
+                </div>
+                <div class="setting-item" onclick="alert('Showing Saved Projects & Posts...')">
+                    <div class="item-left"><span class="icon">🔖</span><span>Saved Projects</span></div>
+                    <span class="arrow">➔</span>
+                </div>
+            </div>
+
+            <div class="setting-item" onclick="window.location.href='my-applications.html'">
+    <div class="item-left"><span class="icon">📁</span><span>My Applications</span></div>
+    <span class="arrow">➔</span>
+</div>
+
+<div class="setting-item" onclick="window.location.href='applicants-list.html'">
+    <div class="item-left"><span class="icon">📢</span><span>Manage My Posts</span></div>
+    <span class="arrow">➔</span>
+</div>
+
+            <div class="settings-group">
+                <h3 class="group-title">Preferences</h3>
+                
+                <div class="setting-item">
+                    <div class="item-left"><span class="icon">🔔</span><span>Push Notifications</span></div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="item-left"><span class="icon">🔒</span><span>Privacy & Security</span></div>
+                    <span class="arrow">➔</span>
+                </div>
+                <div class="setting-item">
+                    <div class="item-left"><span class="icon">🌐</span><span>Language (English)</span></div>
+                    <span class="arrow">➔</span>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h3 class="group-title">Support</h3>
+                
+                <div class="setting-item" onclick="alert('Opening Help Center...')">
+                    <div class="item-left"><span class="icon">❓</span><span>Help Center</span></div>
+                    <span class="arrow">➔</span>
+                </div>
+                <div class="setting-item" onclick="alert('Terms & Privacy Policy...')">
+                    <div class="item-left"><span class="icon">📄</span><span>Terms & Policies</span></div>
+                    <span class="arrow">➔</span>
+                </div>
+            </div>
+
+            <button class="logout-btn" id="logout-btn">Log Out</button>
+
+            <p class="app-version">CineLink v1.0.0 (Beta)</p>
+        </main>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

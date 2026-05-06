@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Notifications</title>
+    <link rel="stylesheet" href="notifications.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="notify-header">
+            <div class="back-btn" onclick="window.history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <h1 class="header-title">Notifications</h1>
+            <!-- Mark all as read button -->
+            <div class="mark-read-btn" id="mark-all-read">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A0A0A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="18 6 7 17 2 12"></polyline>
+                    <polyline points="22 10 11 21 6 16"></polyline>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="notify-tabs">
+            <div class="tab active" id="tab-all">All</div>
+            <div class="tab" id="tab-unread">Unread <span class="badge">3</span></div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="content" id="notifications-list">
+            
+            <!-- Unread Notification: Application View -->
+            <div class="notification-item unread">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Director">
+                    <div class="action-badge bg-gold">🎬</div>
+                </div>
+                <div class="notify-info">
+                    <p><strong>Karthik Raj</strong> viewed your application for <em>Female Lead Needed</em>.</p>
+                    <span class="time">2m ago</span>
+                </div>
+                <div class="unread-dot"></div>
+            </div>
+
+            <!-- Unread Notification: Like -->
+            <div class="notification-item unread">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="User">
+                    <div class="action-badge bg-red">❤️</div>
+                </div>
+                <div class="notify-info">
+                    <p><strong>Meera Krishnan</strong> liked your recent acting reel.</p>
+                    <span class="time">15m ago</span>
+                </div>
+                <div class="unread-dot"></div>
+            </div>
+
+            <!-- Unread Notification: System/Premium -->
+            <div class="notification-item unread">
+                <div class="avatar-container system-avatar">
+                    <span style="font-size: 24px;">👑</span>
+                    <div class="action-badge bg-blue">🚀</div>
+                </div>
+                <div class="notify-info">
+                    <p><strong>CineLink PRO</strong>: Get 50% off on your first Profile Boost! Claim now.</p>
+                    <span class="time">1h ago</span>
+                </div>
+                <div class="unread-dot"></div>
+            </div>
+
+            <!-- Read Notification: Message -->
+            <div class="notification-item">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" alt="Editor">
+                    <div class="action-badge bg-green">💬</div>
+                </div>
+                <div class="notify-info">
+                    <p><strong>Vikram Editz</strong> sent you a message: "Let's collaborate on..."</p>
+                    <span class="time">Yesterday</span>
+                </div>
+            </div>
+
+            <!-- Read Notification: Follow -->
+            <div class="notification-item">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="User">
+                    <div class="action-badge bg-purple">👤</div>
+                </div>
+                <div class="notify-info">
+                    <p><strong>Ananya Ravi</strong> started following you.</p>
+                    <span class="time">Yesterday</span>
+                </div>
+                <button class="follow-back-btn">Follow</button>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="notifications.js"></script>
+</body>
+</html>

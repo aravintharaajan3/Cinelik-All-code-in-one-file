@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Projects</title>
+    <link rel="stylesheet" href="projects.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <!-- Notifications (Bell) -->
+            <div class="header-icon" onclick="window.location.href='notifications.html'" style="cursor: pointer;">
+                🔔<span class="badge">3</span>
+            </div>
+            
+            <div class="logo-container">
+                <h1 class="logo">CINELINK</h1>
+                <p class="tagline">Discover Talent. Create Cinema.</p>
+            </div>
+            
+            <!-- Filter Icon (Same as Discover Screen) -->
+            <div class="header-icon" onclick="alert('Filter options coming soon!')" style="cursor: pointer;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <br>
+                <small style="font-size: 8px;">Filter</small>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h2 class="page-title">Projects</h2>
+            <p class="page-subtitle">Find projects. Show your talent. Get hired.</p>
+
+            <div class="search-action-row">
+                <div class="search-bar">
+                    <span>🔍</span><input type="text" placeholder="Search projects, roles, skills...">
+                </div>
+                <button class="post-project-btn" onclick="window.location.href='create-project.html'" style="cursor: pointer;">
+    + Post Project
+</button>
+            </div>
+
+            <div class="filter-scroll">
+                <div class="filter-pill active">All</div><div class="filter-pill">Paid</div>
+                <div class="filter-pill">Unpaid</div><div class="filter-pill urgent">Urgent <span class="dot"></span></div>
+                <div class="filter-pill">Short Film</div><div class="filter-pill">Music Video</div>
+            </div>
+
+            <div id="projects-container"></div>
+        </main>
+
+        <!-- Create Menu Overlay -->
+        <div class="create-overlay" id="create-overlay">
+            <div class="create-menu">
+                <div class="menu-drag-handle"></div>
+                <h3 class="menu-title">Create</h3>
+                <div class="create-options">
+                    <div class="create-option"><div class="opt-icon">📝</div><span>Post</span></div>
+                    <div class="create-option"><div class="opt-icon">📸</div><span>Story</span></div>
+                    <div class="create-option"><div class="opt-icon">🎞️</div><span>Reel</span></div>
+                    <div class="create-option"><div class="opt-icon">🎥</div><span>Video</span></div>
+                    <div class="create-option"><div class="opt-icon">🔴</div><span>Live</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Menu -->
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="window.location.href='home.html'">
+                <span class="icon">🏠</span>
+                <span class="label">Home</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='discover.html'">
+                <span class="icon">🔍</span>
+                <span class="label">Discover</span>
+            </div>
+            
+            <!-- Reels Button (Center Elevated) -->
+            <div class="nav-item center-reels" onclick="window.location.href='reels.html'">
+                <div class="reels-btn-wrapper">
+                    <span class="reels-icon">🎬</span>
+                </div>
+            </div>
+
+            <!-- ACTIVE CLASS HERE -->
+            <div class="nav-item active" onclick="window.location.href='projects.html'">
+                <span class="icon">📋</span>
+                <span class="label">Projects</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='profile.html'">
+                <span class="icon">👤</span>
+                <span class="label">Profile</span>
+            </div>
+        </nav>
+    </div>
+    <script src="projects.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Create Post</title>
+    <link rel="stylesheet" href="create-post.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="create-header">
+            <div class="cancel-btn" onclick="window.history.back()">Cancel</div>
+            <h1 class="header-title">New Post</h1>
+            <button class="share-btn" id="share-btn" disabled>Share</button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- User Info -->
+            <div class="user-row">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="User" class="user-avatar">
+                <div class="user-details">
+                    <h4>Arun Prasath</h4>
+                    <div class="privacy-pill">
+                        <span>🌎</span> Anyone <span style="font-size: 10px;">▼</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Area -->
+            <textarea id="post-caption" placeholder="What's on your mind? Or are you hiring?"></textarea>
+
+            <!-- Media Preview Area (Hidden by default) -->
+            <div class="media-preview" id="media-preview" style="display: none;">
+                <button class="remove-media" id="remove-media">✕</button>
+                <img src="" id="preview-img" alt="Preview">
+            </div>
+
+            <!-- Post Type Tags -->
+            <div class="post-tags-container">
+                <div class="post-tag active">Standard</div>
+                <div class="post-tag">Casting Call</div>
+                <div class="post-tag">Portfolio Update</div>
+            </div>
+        </main>
+
+        <!-- Bottom Attachment Toolbar -->
+        <div class="attachment-toolbar">
+            <div class="tool-item" id="add-photo-btn">
+                <span class="tool-icon">🖼️</span> Photo/Video
+            </div>
+            <div class="tool-item">
+                <span class="tool-icon">📍</span> Location
+            </div>
+            <div class="tool-item">
+                <span class="tool-icon">👤</span> Tag People
+            </div>
+            <div class="tool-item">
+                <span class="tool-icon">📋</span> Add Project
+            </div>
+        </div>
+    </div>
+
+    <script src="create-post.js"></script>
+</body>
+</html>

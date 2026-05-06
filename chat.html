@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Chat</title>
+    <link rel="stylesheet" href="chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Chat Header -->
+        <!-- App Header for Chat (Strictly Fixed Alignment) -->
+        <header class="app-header" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #333; width: 100%; box-sizing: border-box; background-color: #000;">
+            
+            <!-- Left Side: Back Button + Profile Info -->
+            <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+                <!-- Back Button -->
+                <div onclick="window.history.back()" style="cursor: pointer; display: flex; align-items: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </div>
+                
+                <!-- User Profile Pic -->
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=40&q=80" alt="Karthik Raj" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+                
+                <!-- User Name & Status -->
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <h2 style="font-size: 16px; margin: 0; color: #FFFFFF; display: flex; align-items: center; gap: 4px; white-space: nowrap;">
+                        Karthik Raj <span style="color: #1DA1F2; font-size: 14px;">✔</span>
+                    </h2>
+                    <p style="font-size: 12px; margin: 2px 0 0 0; color: #F5C518; font-weight: 500; white-space: nowrap;">Director • Online</p>
+                </div>
+            </div>
+            
+            <!-- Right Side: Action Icons -->
+            <div style="display: flex; align-items: center; gap: 15px; font-size: 18px;">
+                 <div style="cursor: pointer;">📞</div>
+                 <div style="cursor: pointer;">🎥</div>
+                 <div style="cursor: pointer;">⋮</div>
+            </div>
+        </header>
+
+        <!-- Project Reference Card -->
+        <div class="project-reference">
+            <div class="ref-content">
+                <p class="ref-title">Applying for: Female Lead Needed</p>
+                <p class="ref-budget">₹0 - ₹5,000 • Short Film</p>
+            </div>
+            <div class="ref-icon">🎬</div>
+        </div>
+
+        <!-- Chat Area -->
+        <main class="chat-area" id="chat-box">
+            <div class="chat-date">Today</div>
+
+            <div class="message received">
+                <p>Hi Arun! Saw your portfolio. Your emotional scene reel is exactly what I'm looking for.</p>
+                <span class="time">10:30 AM</span>
+            </div>
+
+            <div class="message sent">
+                <p>Hello Sir! Thank you so much. I've been following your work, really loved your last short film.</p>
+                <span class="time">10:32 AM</span><span class="read-receipt">✓✓</span>
+            </div>
+
+            <div class="message received">
+                <p>Glad to hear that. Are you available for a quick script reading session tomorrow evening in Chennai?</p>
+                <span class="time">10:35 AM</span>
+            </div>
+            
+            <div class="message sent">
+                <p>Yes sir, absolutely! I am available. Where should we meet?</p>
+                <span class="time">10:36 AM</span><span class="read-receipt">✓✓</span>
+            </div>
+            
+            <!-- Typing Indicator (Simulated) -->
+            <div class="message received typing" id="typing-indicator" style="display: none;">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+        </main>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-area">
+            <div class="input-action-btn">📎</div>
+            <input type="text" id="message-input" placeholder="Type a message...">
+            <div class="input-action-btn">🎤</div>
+            <button class="send-btn" id="send-btn">➤</button>
+        </div>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>

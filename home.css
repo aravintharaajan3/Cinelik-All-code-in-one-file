@@ -1,0 +1,97 @@
+:root {
+    --bg: #000000; --surface: #121212; --surface-light: #1E1E1E;
+    --gold: #F5C518; --text-main: #FFFFFF; --text-muted: #A0A0A0;
+    --font: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font); }
+
+body { background-color: #222; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+.app-container {
+    width: 390px; height: 844px; background-color: var(--bg);
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8); border: 8px solid #333; border-radius: 40px;
+}
+
+/* App Header */
+.app-header { 
+    position: relative; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 20px; 
+    background: var(--surface); 
+    border-bottom: 1px solid #222; 
+    z-index: 10; 
+    height: 75px; 
+}
+
+.header-icon-left { cursor: pointer; display: flex; align-items: center; width: 60px; transition: 0.2s; }
+.header-icon-left:active { transform: scale(0.9); opacity: 0.7; }
+
+.header-right { display: flex; gap: 15px; align-items: center; justify-content: flex-end; width: 60px; }
+.notification-icon { position: relative; font-size: 20px; cursor: pointer; transition: 0.2s; }
+.notification-icon:active { transform: scale(0.9); }
+.badge { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #FF3B30; border-radius: 50%; border: 1px solid var(--surface); }
+.chat-icon { font-size: 20px; cursor: pointer; transition: 0.2s; }
+.chat-icon:active { transform: scale(0.9); }
+
+/* Center Logo & Tagline container */
+.header-center { 
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+/* Makkal keta maari Logo size reduced to 18px */
+.logo { color: var(--gold); font-size: 18px; font-weight: 800; letter-spacing: 1.5px; line-height: 1.1; margin-bottom: 2px; }
+.tagline { color: var(--text-main); font-size: 10px; font-weight: 500; letter-spacing: 0.3px; }
+
+/* Stories Section */
+.story-container { display: flex; gap: 15px; padding: 15px 20px; overflow-x: auto; border-bottom: 1px solid #222; background: var(--bg); }
+.story-container::-webkit-scrollbar { display: none; }
+.story { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 65px; flex-shrink: 0; cursor: pointer; }
+.story-avatar { width: 62px; height: 62px; border-radius: 50%; padding: 2px; border: 2px solid #333; position: relative; }
+.story.unread .story-avatar { border-color: var(--gold); }
+.story-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg); }
+.add-story .add-icon { position: absolute; bottom: 0; right: 0; background: var(--gold); color: black; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 2px solid var(--bg); font-size: 14px; }
+.story-name { color: var(--text-main); font-size: 11px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+
+/* Feed Section */
+.feed { flex: 1; overflow-y: auto; background: var(--bg); }
+.feed::-webkit-scrollbar { display: none; }
+.post-card { background: var(--surface); margin-bottom: 12px; border-bottom: 1px solid #222; padding: 20px; }
+.post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.post-user-info { display: flex; align-items: center; gap: 12px; }
+.post-user-info img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+.post-user-info h4 { color: var(--text-main); font-size: 14px; display: flex; align-items: center; gap: 4px; }
+.verified-icon { color: #1DA1F2; font-size: 12px; }
+.post-user-info p { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+.post-options { color: var(--text-muted); font-size: 18px; font-weight: bold; cursor: pointer; }
+
+.post-content p { color: var(--text-main); font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+.post-image { width: 100%; border-radius: 12px; max-height: 350px; object-fit: cover; margin-bottom: 15px; border: 1px solid #333; }
+
+.post-actions { display: flex; gap: 20px; align-items: center; }
+.action-btn { display: flex; align-items: center; gap: 6px; color: var(--text-main); font-size: 15px; cursor: pointer; transition: 0.2s; }
+.action-btn:active { transform: scale(0.9); }
+.liked { color: #FF3B30 !important; }
+
+/* Bottom Padding */
+.bottom-padding { height: 90px; }
+
+/* Bottom Navigation */
+.bottom-nav { position: absolute; bottom: 0; width: 100%; background: var(--surface); padding: 12px 25px 25px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #222; z-index: 20; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); cursor: pointer; transition: 0.3s; flex: 1; }
+.nav-item.active { color: var(--gold); }
+.nav-item .icon { font-size: 20px; margin-bottom: 2px; }
+.nav-item .label { font-size: 10px; font-weight: 500; }
+
+/* Center Reels Button */
+.center-reels { position: relative; flex: 0 0 60px; display: flex; justify-content: center; }
+.reels-btn-wrapper { position: absolute; bottom: 0px; width: 52px; height: 52px; background: var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(245, 197, 24, 0.4); border: 4px solid var(--bg); transition: 0.2s; cursor: pointer; z-index: 30; }
+.reels-btn-wrapper:active { transform: scale(0.95); }
+.reels-icon { font-size: 22px; margin-left: 2px; }

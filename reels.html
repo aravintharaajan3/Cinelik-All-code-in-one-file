@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Showcase</title>
+    <link rel="stylesheet" href="reels.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Reel Container -->
+        <div class="reel-container">
+            <!-- Background Image simulating a Video (Cinematic Monologue Portrait) -->
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&h=1000&q=80" alt="Video Background" class="reel-video-bg">
+            
+            <!-- Dark Gradient overlay -->
+            <div class="reel-gradient"></div>
+
+            <!-- Top Header -->
+            <header class="reel-header">
+                <div class="back-btn" onclick="window.history.back()">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </div>
+                <h1 class="header-title">Showcase</h1>
+                <div class="camera-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </div>
+            </header>
+
+            <!-- Center Play/Pause Indicator -->
+            <div class="play-indicator" id="play-indicator">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </div>
+
+            <!-- Right Side Actions (Premium SVG Icons) -->
+            <div class="reel-actions">
+                <div class="action-btn" id="like-btn">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon heart-icon">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="count" id="like-count">12.4K</span>
+                </div>
+                
+                <div class="action-btn">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    <span class="count">342</span>
+                </div>
+                
+                <div class="action-btn">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span class="count">Share</span>
+                </div>
+                
+                <div class="action-btn" id="save-btn">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon save-icon">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span class="count">Save</span>
+                </div>
+            </div>
+
+            <!-- Bottom Info Section -->
+            <div class="reel-bottom-info">
+                <div class="user-row">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=150&q=80" alt="User" class="reel-avatar">
+                    <h3 class="reel-username">Sneha Menon <span class="verified-icon">✔</span></h3>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                
+                <p class="reel-caption">
+                    Emotional monologue from my latest audition piece. Let me know your thoughts! 🎬🥺 #acting #monologue #cinema
+                </p>
+                
+                <div class="audio-track">
+                    <span class="music-icon">🎵</span>
+                    <marquee scrollamount="4">Original Audio - Sneha Menon</marquee>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="reels.js"></script>
+</body>
+</html>

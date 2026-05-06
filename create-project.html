@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Post Project</title>
+    <!-- Basic styles & specific styles for this page -->
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="create-project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="create-header">
+            <!-- Back Button (Id added for JS) -->
+            <div id="back-btn" class="back-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </div>
+            <h2>Post a Project</h2>
+        </header>
+
+        <!-- Form Area -->
+        <div class="form-container">
+            <div class="form-group">
+                <label>Project Title *</label>
+                <input type="text" class="form-input" placeholder="e.g., Short Film Female Lead Needed">
+            </div>
+            
+            <div class="form-group row-group">
+                <div class="flex-1">
+                    <label>Role Required *</label>
+                    <select class="form-select">
+                        <option>Actor</option>
+                        <option>Actress</option>
+                        <option>Director</option>
+                        <option>Cinematographer</option>
+                        <option>Editor</option>
+                        <option>Music Director</option>
+                    </select>
+                </div>
+                <div class="flex-1">
+                    <label>Project Type</label>
+                    <select class="form-select">
+                        <option>Short Film</option>
+                        <option>Feature Film</option>
+                        <option>Web Series</option>
+                        <option>Music Video</option>
+                        <option>Ad Film</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Location *</label>
+                <input type="text" class="form-input" placeholder="e.g., Chennai, TN">
+            </div>
+
+            <div class="form-group row-group">
+                <div class="flex-1">
+                    <label>Compensation</label>
+                    <select class="form-select">
+                        <option>Paid</option>
+                        <option>Unpaid (Collab)</option>
+                        <option>Expenses Covered</option>
+                    </select>
+                </div>
+                <div class="flex-1">
+                    <label>Budget (₹)</label>
+                    <input type="number" class="form-input" placeholder="e.g., 5000">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Estimated Shoot Date</label>
+                <input type="date" class="form-input dark-date">
+            </div>
+
+            <div class="form-group">
+                <label>Description & Requirements *</label>
+                <textarea class="form-textarea" placeholder="Describe the character, age range (e.g., 18-25 yrs), required skills, and a brief project summary..."></textarea>
+            </div>
+
+            <!-- Submit Button (Id added for JS) -->
+            <button id="submit-project-btn" class="submit-btn">Post Project</button>
+        </div>
+        
+    </div>
+
+    <!-- Script file link -->
+    <script src="create-project.js"></script>
+</body>
+</html>

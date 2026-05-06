@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="profile-header">
+            <div class="header-icon" onclick="window.location.href='settings.html'">⚙️</div>
+            <div class="logo-container">
+                <h1 class="logo">CINELINK</h1>
+                <p class="tagline">Discover Talent. Create Cinema.</p>
+            </div>
+            <div class="header-actions">
+                <div class="notification"><span>🔔</span><span class="badge">3</span></div>
+                <div class="header-icon">☰</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="profile-top">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="Arun Prasath" class="profile-avatar">
+                    <div class="camera-badge">📷</div>
+                </div>
+                <div class="profile-details">
+                    <h2 class="profile-name">Arun Prasath <span class="verified-icon">✔</span></h2>
+                    <p class="profile-role">Actor</p>
+                    <p class="profile-meta">📍 Chennai, Tamil Nadu</p>
+                    <p class="profile-meta">🌐 Tamil, English</p>
+                    <div class="verified-tag">🛡️ Verified Talent</div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button class="btn-outline" onclick="window.location.href='edit-profile.html'">✏️ Edit Profile</button>
+                <button class="btn-solid" onclick="window.location.href='premium.html'">🚀 Boost Profile</button>
+            </div>
+
+            <div class="profile-bio"><p>Actor by passion. Trying to tell stories that connect. Available for short films, web series & feature films.</p></div>
+            <div class="skill-tags"><span class="tag">🎭 Acting</span><span class="tag">💬 Dialogues</span><span class="tag">🥺 Emotional</span><span class="tag">💥 Action</span></div>
+
+            <div class="profile-stats">
+                <div class="stat-box"><h4>48</h4><p>Posts</p></div><div class="stat-box"><h4>2,350</h4><p>Followers</p></div>
+                <div class="stat-box"><h4>420</h4><p>Following</p></div><div class="stat-box"><h4>27</h4><p>Projects</p></div>
+                <div class="stat-box rating"><h4>4.8 <span>⭐</span></h4><p>Rating</p></div>
+            </div>
+
+            <div class="portfolio-section">
+                <h3 class="section-title">Portfolio</h3>
+                <div class="portfolio-tabs"><div class="tab active">🎥 Videos</div><div class="tab">🖼️ Photos</div><div class="tab">🎞️ Reels</div></div>
+                <div class="portfolio-grid" id="portfolio-container"></div>
+                <button class="view-all-btn">View All Videos</button>
+            </div>
+            
+            <div class="achievements-section">
+                <div class="section-header"><h3 class="section-title">Achievements</h3></div>
+                <div class="achievements-scroll" id="achievements-container"></div>
+            </div>
+        </main>
+
+        <!-- Create Menu Overlay -->
+        <div class="create-overlay" id="create-overlay">
+            <div class="create-menu">
+                <div class="menu-drag-handle"></div>
+                <h3 class="menu-title">Create</h3>
+                <div class="create-options">
+                    <div class="create-option"><div class="opt-icon">📝</div><span>Post</span></div>
+                    <div class="create-option"><div class="opt-icon">📸</div><span>Story</span></div>
+                    <div class="create-option"><div class="opt-icon">🎞️</div><span>Reel</span></div>
+                    <div class="create-option"><div class="opt-icon">🎥</div><span>Video</span></div>
+                    <div class="create-option"><div class="opt-icon">🔴</div><span>Live</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Menu -->
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="window.location.href='home.html'">
+                <span class="icon">🏠</span>
+                <span class="label">Home</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='discover.html'">
+                <span class="icon">🔍</span>
+                <span class="label">Discover</span>
+            </div>
+            
+            <!-- Reels Button (Center Elevated) -->
+            <div class="nav-item center-reels" onclick="window.location.href='reels.html'">
+                <div class="reels-btn-wrapper">
+                    <span class="reels-icon">🎬</span>
+                </div>
+            </div>
+
+            <div class="nav-item" onclick="window.location.href='projects.html'">
+                <span class="icon">📋</span>
+                <span class="label">Projects</span>
+            </div>
+            <!-- ACTIVE CLASS HERE -->
+            <div class="nav-item active" onclick="window.location.href='profile.html'">
+                <span class="icon">👤</span>
+                <span class="label">Profile</span>
+            </div>
+        </nav>
+    </div>
+    <script src="profile.js"></script>
+</body>
+</html>

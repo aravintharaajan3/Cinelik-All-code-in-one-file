@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Applicants</title>
+    <link rel="stylesheet" href="applicants-list.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="applicants-header">
+            <div class="back-btn" onclick="window.history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <div class="header-titles">
+                <h1 class="header-title">Applicants</h1>
+                <p class="project-subtitle">Female Lead Needed</p>
+            </div>
+            <div class="placeholder"></div>
+        </header>
+
+        <!-- Stats -->
+        <div class="quick-stats">
+            <div class="stat-item"><span class="gold-text">45</span> Total</div>
+            <div class="stat-divider"></div>
+            <div class="stat-item"><span class="green-text">5</span> Shortlisted</div>
+            <div class="stat-divider"></div>
+            <div class="stat-item"><span>12</span> Unseen</div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="status-tabs">
+            <div class="tab active" id="tab-all" onclick="filterApplicants('all')">All Applicants</div>
+            <div class="tab" id="tab-shortlisted" onclick="filterApplicants('shortlisted')">Shortlisted</div>
+            <div class="tab" id="tab-rejected" onclick="filterApplicants('rejected')">Rejected</div>
+        </div>
+
+        <!-- Applicants List -->
+        <main class="applicants-container" id="applicants-container">
+            <!-- Cards will be injected by JS -->
+        </main>
+    </div>
+
+    <!-- Success Toast (Hidden) -->
+    <div class="toast-message" id="toast">Action completed!</div>
+
+    <script src="applicants-list.js"></script>
+</body>
+</html>

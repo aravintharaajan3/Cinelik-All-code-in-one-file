@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Choose Role</title>
+    <link rel="stylesheet" href="onboarding.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Subtle Cinematic Background -->
+        <div class="bg-overlay"></div>
+
+        <div class="onboarding-content">
+            <div class="header-section">
+                <h1 class="step-title">I am a...</h1>
+                <p class="step-subtitle">Choose your primary role</p>
+            </div>
+
+            <!-- Premium Grid Layout -->
+            <div class="role-grid">
+                <div class="role-box" id="role-actor" onclick="selectRole('actor', 'role-actor')">
+                    <div class="role-icon">🎭</div>
+                    <span>Actor / Actress</span>
+                </div>
+                
+                <div class="role-box" id="role-director" onclick="selectRole('director', 'role-director')">
+                    <div class="role-icon">🎬</div>
+                    <span>Director</span>
+                </div>
+                
+                <div class="role-box" id="role-editor" onclick="selectRole('editor', 'role-editor')">
+                    <div class="role-icon">✂️</div>
+                    <span>Editor</span>
+                </div>
+                
+                <div class="role-box" id="role-musician" onclick="selectRole('musician', 'role-musician')">
+                    <div class="role-icon">🎵</div>
+                    <span>Musician</span>
+                </div>
+                
+                <div class="role-box" id="role-writer" onclick="selectRole('writer', 'role-writer')">
+                    <div class="role-icon">✍️</div>
+                    <span>Writer</span>
+                </div>
+                
+                <div class="role-box" id="role-crew" onclick="selectRole('crew', 'role-crew')">
+                    <div class="role-icon">🎥</div>
+                    <span>Crew / Other</span>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <button class="continue-btn" id="continue-btn" disabled>CONTINUE ➔</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="onboarding.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - My Applications</title>
+    <link rel="stylesheet" href="my-applications.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="dashboard-header">
+            <div class="back-btn" onclick="window.history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <h1 class="header-title">My Applications</h1>
+            <div class="placeholder"></div>
+        </header>
+
+        <div class="stats-row">
+            <div class="stat-card highlighted" id="stat-all" onclick="filterApplications('all')">
+                <span class="stat-num" id="count-all">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-card" id="stat-shortlisted" onclick="filterApplications('shortlisted')">
+                <span class="stat-num" id="count-shortlisted">0</span>
+                <span class="stat-label">Shortlisted</span>
+            </div>
+            <div class="stat-card" id="stat-applied" onclick="filterApplications('applied')">
+                <span class="stat-num" id="count-applied">0</span>
+                <span class="stat-label">Applied</span>
+            </div>
+        </div>
+
+        <div class="status-tabs">
+            <div class="tab active" id="tab-all" onclick="filterApplications('all')">All</div>
+            <div class="tab" id="tab-shortlisted" onclick="filterApplications('shortlisted')">Shortlisted</div>
+            <div class="tab" id="tab-applied" onclick="filterApplications('applied')">Pending</div>
+        </div>
+
+        <main class="applications-list" id="apps-container">
+            </main>
+    </div>
+
+    <script src="my-applications.js"></script>
+</body>
+</html>

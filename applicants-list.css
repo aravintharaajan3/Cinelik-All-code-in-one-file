@@ -1,0 +1,70 @@
+:root {
+    --bg: #000000; --surface: #121212; --surface-light: #1E1E1E;
+    --gold: #F5C518; --text-main: #FFFFFF; --text-muted: #A0A0A0;
+    --font: 'Inter', sans-serif;
+    --green: #17BF63; --red: #E0245E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font); }
+
+body { background-color: #222; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+.app-container {
+    width: 390px; height: 844px; background-color: var(--bg);
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8); border: 8px solid #333; border-radius: 40px;
+}
+
+/* Header */
+.applicants-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px 15px; border-bottom: 1px solid #222; background: var(--surface); }
+.back-btn { cursor: pointer; padding: 5px; width: 34px; }
+.header-titles { text-align: center; flex: 1; }
+.header-title { color: var(--text-main); font-size: 16px; font-weight: 600; }
+.project-subtitle { color: var(--gold); font-size: 11px; margin-top: 2px; }
+.placeholder { width: 34px; }
+
+/* Quick Stats */
+.quick-stats { display: flex; justify-content: center; align-items: center; padding: 15px 20px; background: var(--surface-light); gap: 15px; border-bottom: 1px solid #222; }
+.stat-item { color: var(--text-muted); font-size: 12px; font-weight: 500; }
+.gold-text { color: var(--gold); font-weight: 700; font-size: 14px; }
+.green-text { color: var(--green); font-weight: 700; font-size: 14px; }
+.stat-divider { width: 1px; height: 15px; background: #333; }
+
+/* Tabs */
+.status-tabs { display: flex; padding: 0 20px; border-bottom: 1px solid #222; }
+.tab { flex: 1; text-align: center; color: var(--text-muted); font-size: 13px; padding: 15px 0; cursor: pointer; border-bottom: 2px solid transparent; transition: 0.3s; }
+.tab.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+
+/* Container */
+.applicants-container { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 15px; }
+.applicants-container::-webkit-scrollbar { display: none; }
+
+/* Applicant Card */
+.applicant-card { background: var(--surface); border: 1px solid #222; border-radius: 16px; padding: 15px; animation: slideUp 0.3s ease; position: relative; }
+.match-badge { position: absolute; top: 15px; right: 15px; background: rgba(245, 197, 24, 0.1); color: var(--gold); font-size: 10px; font-weight: bold; padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(245, 197, 24, 0.3); }
+
+.app-profile { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; cursor: pointer; }
+.app-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+.app-details h4 { color: var(--text-main); font-size: 15px; margin-bottom: 3px; display: flex; align-items: center; gap: 4px; }
+.app-details p { color: var(--text-muted); font-size: 12px; }
+
+/* Tags */
+.app-tags { display: flex; gap: 8px; margin-bottom: 15px; }
+.tag { background: #222; color: #ccc; font-size: 10px; padding: 4px 8px; border-radius: 4px; }
+
+/* Actions */
+.app-actions { display: flex; gap: 10px; }
+.btn-action { flex: 1; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; border: none; }
+.btn-shortlist { background: var(--gold); color: black; }
+.btn-reject { background: transparent; border: 1px solid #444; color: var(--text-muted); }
+.btn-msg { background: var(--surface-light); color: white; width: 40px; display: flex; justify-content: center; align-items: center; border-radius: 8px; cursor: pointer; }
+
+/* Active States */
+.card-shortlisted { border-color: var(--gold); }
+.card-rejected { opacity: 0.6; }
+
+/* Toast */
+.toast-message { position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); background: var(--surface-light); color: var(--text-main); padding: 12px 24px; border-radius: 20px; font-size: 13px; font-weight: 500; border: 1px solid #333; transition: 0.3s; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+.toast-message.show { bottom: 30px; }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
