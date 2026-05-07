@@ -1,0 +1,43 @@
+{
+    "karthik": {
+        "name": "Karthik Raj",
+        "role": "Director",
+        "location": "Chennai, Tamil Nadu",
+        "bio": "Award-winning short film director. Passionate about emotional storytelling and visual aesthetics. Let's create cinema! 🎬✨",
+        "stats": { "projects": "12", "followers": "14.2K", "following": "340" },
+        "profilePic": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        "bannerPic": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80",
+        "portfolio": [
+            "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=200&q=80",
+            "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=200&q=80",
+            "https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?auto=format&fit=crop&w=200&q=80"
+        ]
+    },
+    "vikram": {
+        "name": "Vikram Editz",
+        "role": "Editor",
+        "location": "Madurai, Tamil Nadu",
+        "bio": "Passionate video editor. Specializing in Premiere Pro & After Effects. Let's make your visuals stunning! ✂️🔥",
+        "stats": { "projects": "34", "followers": "8.5K", "following": "210" },
+        "profilePic": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        "bannerPic": "https://images.unsplash.com/photo-1574717024453-354056fadbc0?auto=format&fit=crop&w=600&q=80",
+        "portfolio": [
+            "https://images.unsplash.com/photo-1535016120720-40c746a6580c?auto=format&fit=crop&w=200&q=80",
+            "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=200&q=80"
+        ]
+    },
+    "meera": {
+        "name": "Meera Krishnan",
+        "role": "Actress",
+        "location": "Coimbatore, Tamil Nadu",
+        "bio": "Method actor. Classical dancer. Looking for challenging roles in emotional dramas and thrillers. 🎭💃",
+        "stats": { "projects": "8", "followers": "22.1K", "following": "150" },
+        "profilePic": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        "bannerPic": "https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?auto=format&fit=crop&w=600&q=80",
+        "portfolio": [
+            "https://images.unsplash.com/photo-1518104593124-ac2e82a5eb9d?auto=format&fit=crop&w=200&q=80",
+            "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80",
+            "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=200&q=80"
+        ]
+    }
+}

@@ -1,51 +1,47 @@
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // 1. URL-la irunthu user ID edukkirom (e.g., ?user=karthik)
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('user') || 'aravinth'; // URL-la user illana default-a Aravinth profile varum
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    let userId = params.get('user');
 
-    // 2. data.json-la irunthu data fetch panrom
-    fetch('data.json')
-        .then(response => response.json())
+    // Default load aavan ulla trick
+    if (!userId) {
+        userId = 'karthik'; 
+    }
+
+    fetch('users.json')
+        .then(res => res.json())
         .then(data => {
-            const userProfile = data[userId];
+            const user = data[userId];
 
-            // 3. User data iruntha HTML-la update panrom
-            if (userProfile) {
-                document.getElementById('user-name').innerText = userProfile.name;
-                document.getElementById('user-role').innerText = userProfile.role;
-                document.getElementById('user-bio').innerHTML = userProfile.bio;
-                
-                document.getElementById('user-projects').innerText = userProfile.projects;
-                document.getElementById('user-followers').innerText = userProfile.followers;
-                document.getElementById('user-following').innerText = userProfile.following;
-                
-                document.getElementById('user-avatar').src = userProfile.profilePic;
-                
-                // Note: Cover photo and Social links namma UI-la irunthu remove pannitom, so ingayum thevaiyilla.
+            if (user) {
+                document.getElementById('up-name').innerText = user.name;
+                document.getElementById('up-role').innerText = user.role;
+                document.getElementById('up-loc').innerText = user.location;
+                document.getElementById('up-bio').innerText = user.bio;
+                document.getElementById('up-avatar').src = user.profilePic;
+                // Banner assignment logic removed from here
+
+                document.getElementById('up-stat-proj').innerText = user.stats.projects;
+                document.getElementById('up-stat-fol').innerText = user.stats.followers;
+                document.getElementById('up-stat-flg').innerText = user.stats.following;
+
+                const portfolioContainer = document.getElementById('up-portfolio');
+                portfolioContainer.innerHTML = user.portfolio.map(imgSrc => 
+                    `<img src="${imgSrc}" alt="Portfolio Item" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px;">`
+                ).join('');
             } else {
-                console.error("User profile not found in JSON!");
+                document.getElementById('up-name').innerText = "User Data Missing";
             }
         })
-        .catch(error => console.error('Error loading JSON data:', error));
-
-    // 4. Tab Switching Logic (Portfolio, Reels, About tabs work aaga)
-    const tabs = document.querySelectorAll('.tab');
-    const sections = document.querySelectorAll('.content-section');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active classes from all tabs and sections
-            tabs.forEach(t => t.classList.remove('active'));
-            sections.forEach(s => s.classList.remove('active-section'));
-
-            // Add active class to clicked tab
-            tab.classList.add('active');
-
-            // Show the corresponding section
-            const targetId = tab.getAttribute('data-target');
-            document.getElementById(targetId).classList.add('active-section');
-        });
-    });
-
+        .catch(err => console.error("Error loading user data:", err));
 });
+
+function toggleFollow() {
+    const btn = document.getElementById('follow-btn');
+    if (btn.innerText === "Follow") {
+        btn.innerText = "Following";
+        btn.classList.add("following");
+    } else {
+        btn.innerText = "Follow";
+        btn.classList.remove("following");
+    }
+}
