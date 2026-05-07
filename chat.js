@@ -1,3 +1,5 @@
+import { db } from './firebase-config.js';
+import { collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- 1. DYNAMIC USER LOADING ---
