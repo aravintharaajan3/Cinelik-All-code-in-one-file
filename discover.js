@@ -1,37 +1,36 @@
-const trendingTalent = [
-    { name: "Arun Prasath", role: "Actor", location: "📍 Chennai, TN", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80", verified: true },
-    { name: "Meera Krishnan", role: "Actress", location: "📍 Coimbatore, TN", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80", verified: true },
-    { name: "Vikram Editz", role: "Editor", location: "📍 Madurai, TN", image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=300&q=80", verified: true }
-];
-const verifiedTalent = [
-    { name: "Ananya Ravi", role: "Actress", location: "📍 Chennai, TN", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80", verified: true },
-    { name: "Karthik Raj", role: "Director", location: "📍 Trichy, TN", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80", verified: true }
-];
-function generateCards(data, containerId) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    data.forEach(person => {
-        container.innerHTML += `
-            <div class="talent-card">
-                <div class="play-btn">▶</div>
-                <img src="${person.image}" alt="${person.name}" class="talent-image">
-                <div class="talent-info">
-                    <div class="talent-name">${person.name} ${person.verified ? '<span class="verified-icon">✔</span>' : ''}</div>
-                    <div class="talent-role">${person.role}</div>
-                    <div class="talent-location">${person.location}</div>
-                </div>
-            </div>`;
-    });
-}
 document.addEventListener('DOMContentLoaded', () => {
-    generateCards(trendingTalent, 'trending-container');
-    generateCards(verifiedTalent, 'verified-container');
-    
-    // Popup logic
-    const postBtnWrapper = document.querySelector('.post-btn-wrapper');
-    const createOverlay = document.getElementById('create-overlay');
-    if (postBtnWrapper && createOverlay) {
-        postBtnWrapper.addEventListener('click', () => createOverlay.classList.add('active'));
-        createOverlay.addEventListener('click', (e) => { if (e.target === createOverlay) createOverlay.classList.remove('active'); });
+    // Namma JSON Database la irukka aalungaloda list
+    const trendingTalents = [
+        { id: 'karthik', name: 'Karthik Raj', role: 'Director', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80' },
+        { id: 'meera', name: 'Meera Krishnan', role: 'Actress', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80' }
+    ];
+
+    const verifiedTalents = [
+        { id: 'aravinth', name: 'Aravintharaajan', role: 'Producer', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80' },
+        { id: 'karthik', name: 'Karthik Raj', role: 'Director', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80' }
+    ];
+
+    const trendingContainer = document.getElementById('trending-container');
+    const verifiedContainer = document.getElementById('verified-container');
+
+    // Function to generate user cards with ONCLICK link!
+    function renderTalents(talentsArray, container) {
+        container.innerHTML = '';
+        talentsArray.forEach(talent => {
+            
+            // Inga thaan antha magical onclick link irukku (user profile.html?user=...)
+            const cardHTML = `
+                <div class="talent-card" onclick="location.href='user profile.html?user=${talent.id}'" style="cursor: pointer; display: inline-block; text-align: center; margin-right: 15px; width: 100px;">
+                    <img src="${talent.img}" alt="${talent.name}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333;">
+                    <h4 style="margin: 8px 0 2px 0; font-size: 13px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${talent.name}</h4>
+                    <p style="margin: 0; font-size: 11px; color: #888;">${talent.role}</p>
+                </div>
+            `;
+            container.innerHTML += cardHTML;
+        });
     }
+
+    // Call the function to display them
+    renderTalents(trendingTalents, trendingContainer);
+    renderTalents(verifiedTalents, verifiedContainer);
 });

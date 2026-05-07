@@ -4,25 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineLink - Discover</title>
-    <!-- FIXED: Pointing to the correct CSS file name -->
     <link rel="stylesheet" href="discover.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
         <header>
             <div class="header-left"></div>
             <div class="logo-container">
                 <h1 class="logo">CINELINK</h1>
-                <p class="tagline">Discover Talent. Create Cinema.</p>
+                <p class="tagline">Discover Talent. Create Cinema</p>
             </div>
             <div class="header-actions">
-                <!-- ADDED: onclick for notifications -->
                 <div class="notification" onclick="window.location.href='notifications.html'" style="cursor: pointer;">
                     <span style="font-size: 20px;">🔔</span><span class="badge">3</span>
                 </div>
-                <!-- ADDED: onclick alert for filter -->
                 <div class="filter-btn" onclick="alert('Filter options coming soon!')" style="cursor: pointer;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
@@ -32,7 +28,6 @@
             </div>
         </header>
 
-        <!-- Main Content -->
         <main class="content">
             <h2 class="page-title">Discover</h2>
             <p class="page-subtitle">Find the perfect talent for your next project</p>
@@ -42,8 +37,7 @@
                 <input type="text" placeholder="Search by name, skill, location...">
             </div>
 
-           <!-- Categories -->
-            <div class="categories" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; scrollbar-width: none;">
+           <div class="categories" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; scrollbar-width: none;">
                 <div class="category-item active" onclick="selectCategory(this)" style="cursor: pointer;">
                     <div class="icon-circle">⭐</div><span>All</span>
                 </div>
@@ -61,42 +55,25 @@
                 </div>
             </div>
 
-            <!-- Talent Sections -->
             <div class="section-header"><h3>🔥 Trending Talent</h3><a href="#">See All ></a></div>
             <div class="horizontal-scroll" id="trending-container"></div>
 
             <div class="section-header"><h3>✅ Verified Talent</h3><a href="#">See All ></a></div>
             <div class="horizontal-scroll" id="verified-container"></div>
+            
+            <div style="height: 80px;"></div> 
         </main>
 
-        <!-- Create Menu Overlay -->
-        <div class="create-overlay" id="create-overlay">
-            <div class="create-menu">
-                <div class="menu-drag-handle"></div>
-                <h3 class="menu-title">Create</h3>
-                <div class="create-options">
-                    <div class="create-option"><div class="opt-icon">📝</div><span>Post</span></div>
-                    <div class="create-option"><div class="opt-icon">📸</div><span>Story</span></div>
-                    <div class="create-option"><div class="opt-icon">🎞️</div><span>Reel</span></div>
-                    <div class="create-option"><div class="opt-icon">🎥</div><span>Video</span></div>
-                    <div class="create-option"><div class="opt-icon">🔴</div><span>Live</span></div>
-                </div>
-            </div>
-        </div>
-
-       <!-- Bottom Navigation Menu -->
-        <nav class="bottom-nav">
+       <nav class="bottom-nav">
             <div class="nav-item" onclick="window.location.href='index.html'">
                 <span class="icon">🏠</span>
                 <span class="label">Home</span>
             </div>
-            <!-- FIXED: 'onclick' and 'active' are now correct for being on the Discover page -->
             <div class="nav-item active" onclick="window.location.href='discover.html'">
                 <span class="icon">🔍</span>
                 <span class="label">Discover</span>
             </div>
             
-            <!-- Reels Button (Center Elevated) -->
             <div class="nav-item center-reels" onclick="window.location.href='reels.html'">
                 <div class="reels-btn-wrapper">
                     <span class="reels-icon">🎬</span>
@@ -114,18 +91,13 @@
         </nav>
     </div>
     
-    <!-- FIXED: Pointing to the correct JS file name -->
     <script src="discover.js"></script>
-    <!-- Add this script right before the closing </body> tag -->
     <script>
         function selectCategory(clickedElement) {
-            // Step 1: Ellaa category-layum irunthu 'active' class-a remove pannidum
             let categories = document.querySelectorAll('.category-item');
             categories.forEach(function(item) {
                 item.classList.remove('active');
             });
-            
-            // Step 2: Nee endha category-a click panniyoo, athukku mattum 'active' class-a add pannum
             clickedElement.classList.add('active');
         }
     </script>

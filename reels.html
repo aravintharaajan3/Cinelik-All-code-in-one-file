@@ -10,17 +10,13 @@
 <body>
     <div class="app-container">
         
-        <!-- Reel Container -->
         <div class="reel-container">
-            <!-- Background Image simulating a Video (Cinematic Monologue Portrait) -->
             <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&h=1000&q=80" alt="Video Background" class="reel-video-bg">
             
-            <!-- Dark Gradient overlay -->
             <div class="reel-gradient"></div>
 
-            <!-- Top Header -->
             <header class="reel-header">
-                <div class="back-btn" onclick="window.history.back()">
+                <div class="back-btn" onclick="window.history.back()" style="cursor: pointer;">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
@@ -34,14 +30,12 @@
                 </div>
             </header>
 
-            <!-- Center Play/Pause Indicator -->
             <div class="play-indicator" id="play-indicator">
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
             </div>
 
-            <!-- Right Side Actions (Premium SVG Icons) -->
             <div class="reel-actions">
                 <div class="action-btn" id="like-btn">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon heart-icon">
@@ -73,11 +67,13 @@
                 </div>
             </div>
 
-            <!-- Bottom Info Section -->
             <div class="reel-bottom-info">
-                <div class="user-row">
-                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=150&q=80" alt="User" class="reel-avatar">
-                    <h3 class="reel-username">Sneha Menon <span class="verified-icon">✔</span></h3>
+                <div class="user-row" style="display: flex; align-items: center; justify-content: space-between;">
+                    
+                    <div class="reel-user-clickable" onclick="location.href='user profile.html?user=meera'" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="User" class="reel-avatar">
+                        <h3 class="reel-username" style="margin: 0;">Meera Krishnan <span class="verified-icon">✔</span></h3>
+                    </div>
                     <button class="follow-btn">Follow</button>
                 </div>
                 
@@ -87,7 +83,7 @@
                 
                 <div class="audio-track">
                     <span class="music-icon">🎵</span>
-                    <marquee scrollamount="4">Original Audio - Sneha Menon</marquee>
+                    <marquee scrollamount="4">Original Audio - Meera Krishnan</marquee>
                 </div>
             </div>
 

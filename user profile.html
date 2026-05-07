@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLink - Pro Profile</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="user profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+
+        <header class="profile-top-nav" style="position: relative; padding: 20px 20px 0 20px;">
+            <div id="back-btn" class="nav-icon blur-bg" onclick="window.history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </div>
+            <div class="nav-icon blur-bg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </header>
+
+        <div class="profile-info-section" style="margin-top: 20px;">
+            <div class="profile-header-row" style="margin-top: 0; align-items: center;">
+                <div class="avatar-wrapper">
+                    <img id="user-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="Profile" class="profile-avatar">
+                    <div class="online-status"></div>
+                </div>
+
+                <div class="actions-row">
+                    <button class="action-btn primary-btn">Message</button>
+                    <button class="action-btn secondary-btn">Follow</button>
+                </div>
+            </div>
+
+            <div class="profile-bio">
+                <h3 class="full-name"><span id="user-name">Loading...</span> <span class="verified-badge">✔</span></h3>
+                <p class="profession" id="user-role">Loading...</p>
+                <p class="description" id="user-bio" style="margin-top: 10px;">Loading bio details...</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span class="stat-number" id="user-projects">0</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="user-followers">0</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="user-following">0</span>
+                    <span class="stat-label">Following</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-tabs">
+            <div class="tab active" data-target="portfolio-grid">
+                <span class="tab-text">Portfolio</span>
+            </div>
+            <div class="tab" data-target="reels-grid">
+                <span class="tab-text">Reels</span>
+            </div>
+            <div class="tab" data-target="info-list">
+                <span class="tab-text">About</span>
+            </div>
+        </div>
+
+        <div class="tab-content-container">
+            <div id="portfolio-grid" class="content-section active-section">
+                <div class="premium-grid">
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=300&q=80" alt="Work 1">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Work 2">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Work 3">
+                </div>
+            </div>
+
+            <div id="reels-grid" class="content-section">
+                <div class="premium-grid reels-layout">
+                    <div class="reel-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=300&q=80" alt="Reel 1">
+                        <div class="reel-overlay"><span class="play-count">▶ 12.4K</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="info-list" class="content-section">
+                <div class="info-card">
+                    <h4>Top Skills</h4>
+                    <div class="skill-tags">
+                        <span>Film Production</span>
+                        <span>Directing</span>
+                        <span>Editing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 80px;"></div>
+    </div>
+
+    <script src="user profile.js"></script>
+</body>
+</html>

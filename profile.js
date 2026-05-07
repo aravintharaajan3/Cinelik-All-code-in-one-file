@@ -1,3 +1,35 @@
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // 1. URL-la irunthu user id edukkirom (example: profile.html?user=meera)
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('user') || 'arun'; // Default-a Arun profile varum
+
+    // 2. Fetch JSON and update HTML
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const userProfile = data[userId];
+
+            if (userProfile) {
+                document.getElementById('dyn-name').innerText = userProfile.name;
+                document.getElementById('dyn-role').innerText = userProfile.role;
+                document.getElementById('dyn-location').innerText = userProfile.location;
+                document.getElementById('dyn-languages').innerText = userProfile.languages;
+                document.getElementById('dyn-bio').innerText = userProfile.bio;
+                
+                document.getElementById('dyn-posts').innerText = userProfile.posts;
+                document.getElementById('dyn-followers').innerText = userProfile.followers;
+                document.getElementById('dyn-following').innerText = userProfile.following;
+                document.getElementById('dyn-projects').innerText = userProfile.projects;
+                document.getElementById('dyn-rating').innerText = userProfile.rating;
+                
+                document.getElementById('dyn-avatar').src = userProfile.profilePic;
+            }
+        })
+        .catch(error => console.error('Error loading data:', error));
+
+    // Keela un pazhaya JS code edhavathu iruntha (like Create menu open aagurathu), adha apdiye vidu...
+});
 const portfolioVideos = [
     { title: "Emotional Scene", type: "Short Film", time: "00:45", image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=300&q=80" },
     { title: "Dialogue Performance", type: "Short Film", time: "01:02", image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=300&q=80" }

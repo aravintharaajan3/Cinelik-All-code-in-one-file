@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
         <header class="detail-header">
             <div class="back-btn" onclick="window.history.back()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -22,79 +21,47 @@
             </div>
         </header>
 
-        <!-- Main Content -->
         <main class="content">
-            <!-- Project Hero -->
             <div class="project-hero">
                 <div class="urgency-badge">🔥 Urgent Hiring</div>
-                <h1 class="project-title">Female Lead Needed</h1>
-                <p class="project-type">Short Film • Romantic Drama</p>
+                <h1 class="project-title" id="det-title">Project Title</h1>
+                <p class="project-type" id="det-type">CineLink Project</p>
                 
                 <div class="creator-info">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Karthik Raj">
+                    <img id="det-avatar" src="" alt="Creator">
                     <div>
-                        <h4>Karthik Raj <span class="verified-icon">✔</span></h4>
-                        <p>Director • 12 Projects Completed</p>
+                        <h4><span id="det-user">Creator Name</span> <span class="verified-icon">✔</span></h4>
+                        <p id="det-role">Role Info</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Info Grid -->
             <div class="info-grid">
-                <div class="info-box">
-                    <span class="icon">📍</span>
-                    <div><p>Location</p><h5>Chennai</h5></div>
-                </div>
-                <div class="info-box">
-                    <span class="icon">💰</span>
-                    <div><p>Budget</p><h5>₹5K/day</h5></div>
-                </div>
-                <div class="info-box">
-                    <span class="icon">📅</span>
-                    <div><p>Shoot Date</p><h5>25 May '26</h5></div>
-                </div>
-                <div class="info-box">
-                    <span class="icon">🎭</span>
-                    <div><p>Role Type</p><h5>Lead</h5></div>
-                </div>
+                <div class="info-box"><span class="icon">📍</span><div><p>Location</p><h5 id="det-loc">---</h5></div></div>
+                <div class="info-box"><span class="icon">💰</span><div><p>Budget</p><h5 id="det-pay">---</h5></div></div>
+                <div class="info-box"><span class="icon">📅</span><div><p>Shoot Date</p><h5 id="det-date">---</h5></div></div>
+                <div class="info-box"><span class="icon">🎭</span><div><p>Role Type</p><h5>Lead</h5></div></div>
             </div>
 
-            <!-- Tabs -->
             <div class="detail-tabs">
                 <div class="tab active" id="tab-desc">Description</div>
                 <div class="tab" id="tab-req">Requirements</div>
             </div>
 
-            <!-- Description Section -->
             <div class="tab-content" id="content-desc">
                 <h3>About the Project</h3>
-                <p>We are looking for a talented actress aged 18-25 for an upcoming emotional romantic drama short film. The story revolves around a college student discovering her passion for music. The shoot will happen over 3 days in Chennai.</p>
-                
-                <h3>Character Brief</h3>
-                <p><strong>Name:</strong> Nila<br>
-                <strong>Age:</strong> 20-22<br>
-                <strong>Vibe:</strong> Innocent, expressive eyes, boy-next-door charm. Needs to be able to cry naturally on screen.</p>
-                
-                <div class="tags-row">
-                    <span class="tag">Tamil Speaker</span>
-                    <span class="tag">Expressive</span>
-                    <span class="tag">18-25 Yrs</span>
-                </div>
+                <p id="det-desc">We are looking for passionate individuals. Details will be discussed further.</p>
             </div>
 
-            <!-- Requirements Section (Hidden by default) -->
             <div class="tab-content" id="content-req" style="display: none;">
                 <h3>What you need to apply</h3>
                 <ul class="req-list">
-                    <li>✔️ Minimum 2 acting monologue videos in your profile.</li>
-                    <li>✔️ 3 recent headshots (without heavy makeup).</li>
-                    <li>✔️ Fluency in reading and speaking Tamil.</li>
-                    <li>✔️ Must be residing in or willing to travel to Chennai at own cost.</li>
+                    <li>✔️ Relevant experience required.</li>
+                    <li>✔️ Ready to travel to the location.</li>
                 </ul>
             </div>
         </main>
 
-        <!-- Bottom Apply Bar -->
         <div class="apply-bottom-bar">
             <div class="attach-profile">
                 <input type="checkbox" id="attach-check" checked>
@@ -103,7 +70,6 @@
             <button class="apply-btn" id="apply-btn">Apply Now</button>
         </div>
 
-        <!-- Success Modal (Hidden by default) -->
         <div class="success-overlay" id="success-modal">
             <div class="success-box">
                 <div class="check-icon">✓</div>

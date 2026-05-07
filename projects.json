@@ -1,0 +1,47 @@
+{
+    "proj1": {
+        "userId": "karthik",
+        "userName": "Karthik Raj",
+        "role": "Director • 12 Projects Completed",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        "title": "Female Lead Needed",
+        "type": "Short Film • Romantic Drama",
+        "location": "Chennai",
+        "pay": "₹5K/day",
+        "date": "25 May '26",
+        "roleType": "Lead",
+        "urgent": true,
+        "saves": "56 Saved",
+        "desc": "We are looking for a talented actress aged 18-25 for an upcoming emotional romantic drama short film. The story revolves around a college student discovering her passion for music. The shoot will happen over 3 days in Chennai.",
+        "brief": "<strong>Name:</strong> Nila<br><strong>Age:</strong> 20-22<br><strong>Vibe:</strong> Innocent, expressive eyes, boy-next-door charm. Needs to be able to cry naturally on screen.",
+        "tags": ["Tamil Speaker", "Expressive", "18-25 Yrs"],
+        "reqs": [
+            "✔️ Minimum 2 acting monologue videos in your profile.",
+            "✔️ 3 recent headshots (without heavy makeup).",
+            "✔️ Fluency in reading and speaking Tamil.",
+            "✔️ Must be residing in or willing to travel to Chennai at own cost."
+        ]
+    },
+    "proj2": {
+        "userId": "vikram",
+        "userName": "Vikram Editz",
+        "role": "Editor • 5 Projects Completed",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        "title": "Editor Required",
+        "type": "Short Film • Thriller",
+        "location": "Chennai",
+        "pay": "₹15K Total",
+        "date": "10 Jun '26",
+        "roleType": "Editor",
+        "urgent": false,
+        "saves": "24 Saved",
+        "desc": "Need an editor for a 15 min short film. Experience in Premiere Pro and After Effects is required. The film is a fast-paced thriller, so your pacing needs to be top-notch.",
+        "brief": "<strong>Software:</strong> Premiere Pro, After Effects<br><strong>Style:</strong> Fast cuts, color grading required.<br><strong>Timeline:</strong> 2 Weeks delivery.",
+        "tags": ["Editing", "Premiere Pro", "Post Production"],
+        "reqs": [
+            "✔️ Minimum 3 edit samples in your profile.",
+            "✔️ Strong understanding of pacing and color grading.",
+            "✔️ Ability to deliver within the strict deadline."
+        ]
+    }
+}
