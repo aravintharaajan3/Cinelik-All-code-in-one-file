@@ -1,7 +1,7 @@
-import { db } from './firebase-config.js'; // Storage import thookiyachu
-import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { db } from './firebase-config.js'; 
+import { collection, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const captionInput = document.getElementById('post-caption');
     const shareBtn = document.getElementById('share-btn');
     const addPhotoBtn = document.getElementById('add-photo-btn');
@@ -27,9 +27,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const privacyBtn = document.getElementById('privacy-btn');
     const privacyText = document.getElementById('privacy-text');
 
+    // UI Elements for dynamic user loading
+    const currentUserAvatar = document.getElementById('current-user-avatar');
+    const currentUserNameDisplay = document.getElementById('current-user-name');
+    const toastMessage = document.getElementById('toast-message');
+
     let finalBase64Image = ""; 
     let selectedLocation = "";
     let selectedPrivacy = "Anyone"; 
+    
+    let dbUserName = "Aravinth";
+    let dbUserAvatar = "";
+
+    // TOAST FUNCTION
+    function showToast(msg) {
+        if(!toastMessage) return;
+        toastMessage.innerText = msg;
+        toastMessage.classList.remove('hidden');
+        toastMessage.classList.add('show');
+        setTimeout(() => {
+            toastMessage.classList.remove('show');
+            setTimeout(() => toastMessage.classList.add('hidden'), 300);
+        }, 2000);
+    }
+
+    // --- FETCH CURRENT USER DATA FROM FIREBASE ---
+    async function fetchUserData() {
+        try {
+            const userSnap = await getDoc(doc(db, "users", "aravinth_profile"));
+            if (userSnap.exists()) {
+                const uData = userSnap.data();
+                dbUserName = uData.name || "Aravinth";
+                dbUserAvatar = uData.profilePic || "";
+                
+                currentUserNameDisplay.innerText = dbUserName;
+                if (dbUserAvatar !== "") {
+                    currentUserAvatar.src = dbUserAvatar;
+                }
+            } else {
+                currentUserNameDisplay.innerText = dbUserName;
+            }
+        } catch(e) { 
+            console.error("Error fetching user data:", e); 
+            currentUserNameDisplay.innerText = dbUserName;
+        }
+    }
+    
+    await fetchUserData();
 
     function checkInput() {
         if (captionInput.value.trim() !== '' || finalBase64Image !== '') {
@@ -50,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
             reader.onload = (event) => {
                 const img = new Image();
                 img.onload = () => {
-                    // Compress panrom so DB thaangum
                     const canvas = document.createElement('canvas');
                     const MAX_WIDTH = 800; 
                     const scaleSize = MAX_WIDTH / img.width;
@@ -60,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                     
-                    finalBase64Image = canvas.toDataURL('image/jpeg', 0.6); // 60% Quality for testing
+                    finalBase64Image = canvas.toDataURL('image/jpeg', 0.6); 
                     previewImg.src = finalBase64Image;
                     mediaPreview.style.display = 'block';
                     checkInput();
@@ -84,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.remove('hidden');
         modal.classList.remove('hidden');
     }
-    
     function closeModal(overlay, modal) {
         modal.classList.add('hidden');
         setTimeout(() => overlay.classList.add('hidden'), 300);
@@ -155,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- FIREBASE WRITE LOGIC (TESTING MODE) ---
+    // --- FIREBASE WRITE LOGIC ---
     shareBtn.addEventListener('click', async () => {
         shareBtn.innerHTML = 'Posting⏳'; 
         shareBtn.disabled = true; 
@@ -165,25 +207,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeTagElement = document.querySelector('.post-tag.active');
             const activeTag = activeTagElement ? activeTagElement.innerText : 'Standard';
 
-            // Save to Firestore Database with the Base64 String directly!
+            // Saving dynamic user name along with post data
             await addDoc(collection(db, "posts"), {
-                userName: "Aravinth", 
+                userName: dbUserName, // Saving exact DB name!
+                userAvatar: dbUserAvatar,
                 content: postContent,
                 tag: activeTag,
                 location: selectedLocation, 
                 privacy: selectedPrivacy,
-                imageUrl: finalBase64Image, // SAVING COMPRESSED IMAGE AS TEXT
+                imageUrl: finalBase64Image, 
                 likes: 0,
                 commentsCount: 0,
                 timestamp: serverTimestamp() 
             });
 
-            alert('Post Published Successfully! 🎉');
-            window.location.href = 'index.html'; 
+            showToast('Post Published Successfully! 🎉');
+            
+            // Wait for toast to show, then redirect
+            setTimeout(() => {
+                window.location.href = 'index.html'; 
+            }, 1500);
 
         } catch (error) {
             console.error("Error adding post: ", error);
-            alert("Oops! Upload aagala. Image size perusa irukkalam.");
+            showToast("Oops! Upload aagala. Image size perusa irukkalam.");
             shareBtn.innerHTML = 'Share';
             shareBtn.disabled = false;
         }

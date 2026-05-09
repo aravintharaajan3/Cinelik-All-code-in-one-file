@@ -2,6 +2,16 @@
 body {
     background-color: #000; 
     margin: 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 390px; height: 844px; background-color: #000;
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8); border: 8px solid #333; border-radius: 40px;
 }
 
 /* Header Styles */
@@ -35,7 +45,9 @@ body {
     padding: 20px;
     color: white;
     padding-bottom: 50px;
+    overflow-y: auto;
 }
+.form-container::-webkit-scrollbar { display: none; }
 
 .form-group {
     margin-bottom: 20px;
@@ -68,11 +80,11 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     box-sizing: border-box;
+    outline: none;
 }
 
 .form-input:focus, .form-textarea:focus, .form-select:focus {
     border-color: #F5C518;
-    outline: none;
     background-color: #222;
 }
 
@@ -104,3 +116,15 @@ body {
 .submit-btn:hover {
     background-color: #e5b510;
 }
+
+/* TOAST NOTIFICATION CSS */
+.toast-message {
+    position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%);
+    background: rgba(40, 40, 40, 0.95); color: #fff; padding: 12px 24px;
+    border-radius: 25px; font-size: 13px; font-weight: 500;
+    z-index: 9999; backdrop-filter: blur(5px); border: 1px solid #444;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    white-space: nowrap;
+}
+.toast-message.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }

@@ -1,121 +1,107 @@
 import { db } from './firebase-config.js';
-import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { collection, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    const captionInput = document.getElementById('post-caption');
-    const shareBtn = document.getElementById('share-btn');
-    const addPhotoBtn = document.getElementById('add-photo-btn');
-    const mediaPreview = document.getElementById('media-preview');
-    const previewImg = document.getElementById('preview-img');
-    const removeMediaBtn = document.getElementById('remove-media');
+document.addEventListener('DOMContentLoaded', async () => {
     
-    // Extra Tools
-    const toolItems = document.querySelectorAll('.tool-item');
-    const locationBtn = toolItems[1];
-    const tagBtn = toolItems[2];
-    const projectBtn = toolItems[3];
+    // Get all inputs
+    const titleInp = document.getElementById('proj-title');
+    const roleInp = document.getElementById('proj-role');
+    const typeInp = document.getElementById('proj-type');
+    const locInp = document.getElementById('proj-loc');
+    const compInp = document.getElementById('proj-comp');
+    const budgetInp = document.getElementById('proj-budget');
+    const dateInp = document.getElementById('proj-date');
+    const descInp = document.getElementById('proj-desc');
+    
+    const submitBtn = document.getElementById('submit-project-btn');
+    const toastMessage = document.getElementById('toast-message');
 
-    let selectedImageFile = null;
+    let dbUserName = "Aravinth";
+    let dbUserAvatar = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80";
+    let dbUserRole = "Creator";
 
-    // Enable/Disable Share button
-    function checkInput() {
-        if (captionInput.value.trim() !== '' || mediaPreview.style.display === 'block') {
-            shareBtn.disabled = false;
-        } else {
-            shareBtn.disabled = true;
-        }
+    // TOAST FUNCTION
+    function showToast(msg) {
+        if(!toastMessage) return;
+        toastMessage.innerText = msg;
+        toastMessage.classList.remove('hidden');
+        toastMessage.classList.add('show');
+        setTimeout(() => {
+            toastMessage.classList.remove('show');
+            setTimeout(() => toastMessage.classList.add('hidden'), 300);
+        }, 2000);
     }
 
-    captionInput.addEventListener('input', checkInput);
-
-    // 1. REAL FILE PICKER LOGIC
-    addPhotoBtn.addEventListener('click', () => {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*,video/*'; 
-        fileInput.onchange = (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                selectedImageFile = file;
-                // Create a local temporary URL to show the selected image
-                previewImg.src = URL.createObjectURL(file);
-                mediaPreview.style.display = 'block';
-                checkInput();
-            }
-        };
-        fileInput.click(); 
-    });
-
-    removeMediaBtn.addEventListener('click', () => {
-        mediaPreview.style.display = 'none';
-        previewImg.src = '';
-        selectedImageFile = null;
-        checkInput();
-    });
-
-    // 2. EXTRA TOOLS LOGIC
-    locationBtn.addEventListener('click', () => {
-        let loc = prompt("Enter location (e.g., Chennai, Kodambakkam):");
-        if(loc) captionInput.value += `\n📍 Location: ${loc}`;
-        checkInput();
-    });
-
-    tagBtn.addEventListener('click', () => {
-        let tag = prompt("Enter username to tag (e.g., @KarthikRaj):");
-        if(tag) captionInput.value += ` ${tag} `;
-        checkInput();
-    });
-
-    projectBtn.addEventListener('click', () => {
-        let proj = prompt("Enter project name:");
-        if(proj) captionInput.value += `\n🎬 Project: ${proj}`;
-        checkInput();
-    });
-
-    // 3. POST TAGS LOGIC
-    const tags = document.querySelectorAll('.post-tag');
-    tags.forEach(tag => {
-        tag.addEventListener('click', () => {
-            tags.forEach(t => t.classList.remove('active'));
-            tag.classList.add('active');
-        });
-    });
-
-    // 4. FIREBASE WRITE LOGIC
-    shareBtn.addEventListener('click', async () => {
-        shareBtn.innerHTML = 'Posting⏳';
-        shareBtn.disabled = true; 
-        
+    // Fetch user data so project is posted under the right person
+    async function fetchUserData() {
         try {
-            const postContent = captionInput.value.trim();
-            const activeTagElement = document.querySelector('.post-tag.active');
-            const activeTag = activeTagElement ? activeTagElement.innerText : 'Standard';
+            const userSnap = await getDoc(doc(db, "users", "aravinth_profile"));
+            if (userSnap.exists()) {
+                const uData = userSnap.data();
+                if(uData.name) dbUserName = uData.name;
+                if(uData.profilePic) dbUserAvatar = uData.profilePic;
+                if(uData.role) dbUserRole = uData.role;
+            }
+        } catch(e) { console.error("Error fetching user data:", e); }
+    }
+    
+    await fetchUserData();
 
-            // Placeholder image link (Will be replaced with Firebase Storage link later)
-            let imageUrlToSave = "";
-            if (selectedImageFile) {
-                imageUrlToSave = "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=600&q=80";
+    // Handling submission
+    submitBtn.addEventListener('click', async () => {
+        // Validation
+        if (!titleInp.value.trim() || !locInp.value.trim() || !descInp.value.trim()) {
+            showToast("Please fill all mandatory fields (*)");
+            return;
+        }
+
+        submitBtn.innerHTML = 'Posting Project... ⏳';
+        submitBtn.disabled = true;
+
+        try {
+            // Formatting Pay
+            let payFormat = compInp.value;
+            if (compInp.value === "Paid" && budgetInp.value.trim() !== "") {
+                payFormat = `₹${budgetInp.value}`;
             }
 
-            // Save to Firestore
-            await addDoc(collection(db, "posts"), {
-                userName: "Arun Prasath", 
-                content: postContent,
-                tag: activeTag,
-                imageUrl: imageUrlToSave, // Saving the image URL to DB!
-                likes: 0,
-                commentsCount: 0,
-                timestamp: serverTimestamp() 
+            // Formatting Date
+            let dateFormat = "TBD";
+            if (dateInp.value) {
+                const d = new Date(dateInp.value);
+                dateFormat = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+
+            // Database writing
+            await addDoc(collection(db, "projects"), {
+                userId: "aravinth_profile", // Default test user ID
+                userName: dbUserName,
+                role: `${dbUserRole} • Direct Casting`,
+                avatar: dbUserAvatar,
+                title: titleInp.value.trim(),
+                description: descInp.value.trim(),
+                location: locInp.value.trim(),
+                date: dateFormat,
+                pay: payFormat,
+                urgent: true, // Making new posts urgent by default for visibility
+                tags: [roleInp.value, typeInp.value, "New"],
+                saves: 0,
+                timestamp: serverTimestamp()
             });
 
-            alert('Post Published Successfully! 🎉');
-            window.location.href = 'index.html'; 
+            showToast("Casting Call Posted! 🎬🎉");
+            
+            // Redirect to Projects feed after short delay
+            setTimeout(() => {
+                window.location.href = 'projects.html';
+            }, 1500);
 
         } catch (error) {
-            console.error("Error adding post: ", error);
-            alert("Oops! Post aagala. Console-a check pannu machi.");
-            shareBtn.innerHTML = 'Share';
-            shareBtn.disabled = false;
+            console.error("Error posting project: ", error);
+            showToast("Error posting project. Try again.");
+            submitBtn.innerHTML = 'Post Project';
+            submitBtn.disabled = false;
         }
     });
+
 });

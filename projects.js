@@ -1,46 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    const projectsData = [
-        {
-            userId: 'karthik', 
-            userName: 'Karthik Raj',
-            role: 'Director • 12 Projects Completed',
-            avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
-            title: 'Female Lead Needed',
-            description: 'Looking for a talented actress (18-25) for an emotional short film.',
-            location: 'Chennai',
-            date: '25 May 2026',
-            pay: '₹0 - ₹5,000',
-            urgent: true,
-            tags: ['Acting', 'Tamil', '18-25 yrs', 'Emotional'],
-            saves: '56 Saved'
-        },
-        {
-            userId: 'vikram', 
-            userName: 'Vikram Editz',
-            role: 'Editor • 5 Projects Completed',
-            avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
-            title: 'Editor Required',
-            description: 'Need an editor for a 15 min short film. Experience in Premiere Pro required.',
-            location: 'Chennai',
-            date: '10 Jun 2026',
-            pay: '₹10,000 - ₹15,000',
-            urgent: false,
-            tags: ['Editing', 'Premiere Pro', 'Post Production'],
-            saves: '24 Saved'
-        }
-    ];
+import { db } from './firebase-config.js';
+import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+document.addEventListener('DOMContentLoaded', async () => {
+    
     const container = document.getElementById('projects-container');
 
-    function renderProjects() {
+    // Function to render projects HTML
+    function renderProjects(projectsData) {
         container.innerHTML = '';
         
         projectsData.forEach(project => {
-            let tagsHTML = project.tags.map(tag => `<span class="project-tag" style="background: #222; color: #ccc; padding: 4px 10px; border-radius: 4px; font-size: 11px; margin-right: 6px;">${tag}</span>`).join('');
+            let tagsHTML = "";
+            if (project.tags && Array.isArray(project.tags)) {
+                tagsHTML = project.tags.map(tag => `<span class="project-tag" style="background: #222; color: #ccc; padding: 4px 10px; border-radius: 4px; font-size: 11px; margin-right: 6px; display: inline-block; margin-bottom: 5px;">${tag}</span>`).join('');
+            }
+
             let urgentHTML = project.urgent ? `<span style="color: #FF4500; font-size: 12px; display: flex; align-items: center; gap: 4px;">🔥 Urgent</span>` : '';
             
-            // 👇 INGA THAAN MAGIC - URL la data anuppurom 👇
+            // Magical URL linking to Project Details page
             let detailUrl = `project-detail.html?title=${encodeURIComponent(project.title)}&user=${encodeURIComponent(project.userName)}&role=${encodeURIComponent(project.role)}&loc=${encodeURIComponent(project.location)}&pay=${encodeURIComponent(project.pay)}&date=${encodeURIComponent(project.date)}&avatar=${encodeURIComponent(project.avatar)}`;
 
             const cardHTML = `
@@ -68,10 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="tags-container" style="margin-bottom: 20px;">${tagsHTML}</div>
 
                     <div class="project-actions" style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="color: #888; font-size: 12px; display: flex; align-items: center; gap: 4px;">🔖 ${project.saves}</span>
+                        <span style="color: #888; font-size: 12px; display: flex; align-items: center; gap: 4px;">🔖 ${project.saves || '0 Saved'}</span>
                         <div style="display: flex; gap: 10px;">
-                            <button onclick="window.location.href='${detailUrl}'" style="background: transparent; border: 1px solid #444; color: #fff; padding: 8px 15px; border-radius: 6px; font-weight: 600; cursor: pointer;">View Details</button>
-                            <button onclick="window.location.href='${detailUrl}'" style="background: #F5C518; border: none; color: #000; padding: 8px 15px; border-radius: 6px; font-weight: 600; cursor: pointer;">Apply Now</button>
+                            <button onclick="window.location.href='${detailUrl}'" style="background: transparent; border: 1px solid #444; color: #fff; padding: 8px 15px; border-radius: 6px; font-weight: 600; cursor: pointer;">View</button>
+                            <button onclick="window.location.href='${detailUrl}'" style="background: #F5C518; border: none; color: #000; padding: 8px 15px; border-radius: 6px; font-weight: 600; cursor: pointer;">Apply</button>
                         </div>
                     </div>
                 </div>
@@ -80,5 +57,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    renderProjects();
+    // =====================================
+    // FETCH REAL PROJECTS FROM FIREBASE
+    // =====================================
+    async function loadProjectsFromDB() {
+        try {
+            const q = query(collection(db, "projects"), orderBy("timestamp", "desc"));
+            const querySnapshot = await getDocs(q);
+            let projects = [];
+            
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                projects.push({
+                    id: doc.id,
+                    userId: data.userId || 'unknown',
+                    userName: data.userName || 'Creator',
+                    role: data.role || 'Project Lead',
+                    avatar: data.avatar || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80',
+                    title: data.title || 'Untitled Project',
+                    description: data.description || 'No description provided.',
+                    location: data.location || 'Anywhere',
+                    date: data.date || 'TBD',
+                    pay: data.pay || 'Unpaid',
+                    urgent: data.urgent || false,
+                    tags: data.tags || [],
+                    saves: data.saves ? `${data.saves} Saved` : '0 Saved'
+                });
+            });
+
+            // FALLBACK DUMMY DATA: If Database 'projects' collection is empty, use this for testing
+            if (projects.length === 0) {
+                projects = [
+                    {
+                        userId: 'karthik', userName: 'Karthik Raj', role: 'Director • 12 Projects',
+                        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+                        title: 'Female Lead Needed', description: 'Looking for a talented actress (18-25) for an emotional short film.',
+                        location: 'Chennai', date: '25 May 2026', pay: '₹0 - ₹5,000', urgent: true,
+                        tags: ['Acting', 'Tamil', '18-25 yrs', 'Emotional'], saves: '56 Saved'
+                    },
+                    {
+                        userId: 'vikram', userName: 'Vikram Editz', role: 'Editor • 5 Projects',
+                        avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80',
+                        title: 'Editor Required', description: 'Need an editor for a 15 min short film. Experience in Premiere Pro required.',
+                        location: 'Chennai', date: '10 Jun 2026', pay: '₹10,000 - ₹15,000', urgent: false,
+                        tags: ['Editing', 'Premiere Pro', 'Post Production'], saves: '24 Saved'
+                    }
+                ];
+            }
+
+            renderProjects(projects);
+
+        } catch (error) {
+            console.error("Error fetching projects from Firebase:", error);
+            container.innerHTML = '<p style="color: #666; font-size: 12px; text-align: center;">Failed to load projects.</p>';
+        }
+    }
+
+    // Initialize fetch
+    await loadProjectsFromDB();
 });

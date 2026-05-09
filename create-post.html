@@ -17,9 +17,9 @@
 
         <main class="content">
             <div class="user-row">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="User" class="user-avatar">
+                <img id="current-user-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="User" class="user-avatar">
                 <div class="user-details">
-                    <h4>Aravinth</h4>
+                    <h4 id="current-user-name">Loading...</h4>
                     <span id="selected-loc-display" style="display: none; color: var(--gold); font-size: 11px; font-weight: 500; margin-bottom: 3px;"></span>
                     
                     <div class="privacy-pill" id="privacy-btn">
@@ -126,10 +126,6 @@
                     <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" class="tag-avatar">
                     <div class="tag-info"><strong>Meera Krishnan</strong><span>@MeeraK</span></div>
                 </div>
-                <div class="modal-item user-tag-item" data-username="@VikramEdits">
-                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" class="tag-avatar">
-                    <div class="tag-info"><strong>Vikram</strong><span>@VikramEdits</span></div>
-                </div>
             </div>
         </div>
 
@@ -144,9 +140,10 @@
                 <div class="modal-item project-item" data-project="CoreNest Interior Shoot">🎬 CoreNest Interior Shoot</div>
                 <div class="modal-item project-item" data-project="Aadhvik Naturals Promo">🎬 Aadhvik Naturals Promo</div>
                 <div class="modal-item project-item" data-project="Aadhvik Cloth House Ad">🎬 Aadhvik Cloth House Ad</div>
-                <div class="modal-item project-item" data-project="Madurai Explorers Travelogue">🎬 Madurai Explorers Travelogue</div>
             </div>
         </div>
+
+        <div id="toast-message" class="toast-message hidden">Action completed</div>
 
     </div>
     <script type="module" src="create-post.js"></script>

@@ -1,24 +1,45 @@
 import { db } from './firebase-config.js';
-import { collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-document.addEventListener("DOMContentLoaded", () => {
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
     
-    // --- 1. DYNAMIC USER LOADING ---
+    // --- 1. DYNAMIC USER LOADING FROM FIREBASE ---
     const params = new URLSearchParams(window.location.search);
-    let userId = params.get('user') || 'karthik'; // URL la illana karthik default
+    let userId = params.get('user'); 
 
-    fetch('users.json')
-        .then(res => res.json())
-        .then(data => {
-            const user = data[userId];
-            if (user) {
-                document.getElementById('chat-head-name').innerHTML = `${user.name} <span style="color: #1DA1F2; font-size: 14px;">✔</span>`;
-                document.getElementById('chat-head-role').innerText = `${user.role} • Online`;
-                document.getElementById('chat-head-avatar').src = user.profilePic;
+    // Helper to update UI
+    function updateChatHeader(name, role, avatar) {
+        document.getElementById('chat-head-name').innerHTML = `${name} <span style="color: #1DA1F2; font-size: 14px;">✔</span>`;
+        document.getElementById('chat-head-role').innerText = `${role} • Online`;
+        document.getElementById('chat-head-avatar').src = avatar;
+    }
+
+    if (userId) {
+        try {
+            // Fetch exact user from Firebase
+            const userRef = doc(db, "users", userId);
+            const userSnap = await getDoc(userRef);
+
+            if (userSnap.exists()) {
+                const user = userSnap.data();
+                updateChatHeader(
+                    user.name || "Creator", 
+                    user.role || "Talent", 
+                    user.profilePic || "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80"
+                );
+            } else {
+                updateChatHeader("Unknown User", "Offline", "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80");
             }
-        })
-        .catch(err => console.error("Error loading chat data:", err));
+        } catch (error) {
+            console.error("Error loading chat data from Firebase:", error);
+            updateChatHeader("CineLink User", "Creator", "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80");
+        }
+    } else {
+        // Default demo fallback if opened directly
+        updateChatHeader("Karthik Raj", "Director", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80");
+    }
 
-    // --- 2. AWESOME CHAT LOGIC ---
+    // --- 2. AWESOME CHAT LOGIC (UI Simulation) ---
     const sendBtn = document.getElementById('send-btn');
     const messageInput = document.getElementById('message-input');
     const chatBox = document.getElementById('chat-box');
@@ -33,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const text = messageInput.value.trim();
         if (text === "") return;
 
+        // Getting current time
         const now = new Date();
         let hours = now.getHours();
         let minutes = now.getMinutes();
@@ -42,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         minutes = minutes < 10 ? '0' + minutes : minutes;
         const timeString = hours + ':' + minutes + ' ' + ampm;
 
+        // Creating Sent Message Bubble
         const msgDiv = document.createElement('div');
         msgDiv.classList.add('message', 'sent');
         msgDiv.innerHTML = `
@@ -53,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         messageInput.value = '';
         scrollToBottom();
 
+        // Trigger the fake reply
         simulateReply();
     }
 
@@ -73,13 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
             chatBox.insertBefore(replyDiv, typingIndicator);
             scrollToBottom();
             
+            // Turn single ticks to double ticks for realism
             const allTicks = document.querySelectorAll('.read-receipt');
             if(allTicks.length > 0) {
                 allTicks[allTicks.length - 1].innerText = '✓✓';
             }
-        }, 2000);
+        }, 2000); // 2 second delay for typing effect
     }
 
+    // Events
     sendBtn.addEventListener('click', sendMessage);
     messageInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
