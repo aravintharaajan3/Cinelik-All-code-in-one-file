@@ -1,52 +1,191 @@
-const captionInput = document.getElementById('post-caption');
-const shareBtn = document.getElementById('share-btn');
-const addPhotoBtn = document.getElementById('add-photo-btn');
-const mediaPreview = document.getElementById('media-preview');
-const previewImg = document.getElementById('preview-img');
-const removeMediaBtn = document.getElementById('remove-media');
+import { db } from './firebase-config.js'; // Storage import thookiyachu
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// Enable/Disable Share button based on input
-function checkInput() {
-    if (captionInput.value.trim() !== '' || mediaPreview.style.display === 'block') {
-        shareBtn.disabled = false;
-    } else {
-        shareBtn.disabled = true;
-    }
-}
-
-captionInput.addEventListener('input', checkInput);
-
-// Simulate adding a photo
-addPhotoBtn.addEventListener('click', () => {
-    // Adding a dummy cinematic image
-    previewImg.src = 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80';
-    mediaPreview.style.display = 'block';
-    checkInput();
-});
-
-// Remove photo
-removeMediaBtn.addEventListener('click', () => {
-    mediaPreview.style.display = 'none';
-    previewImg.src = '';
-    checkInput();
-});
-
-// Post tags selection logic
-const tags = document.querySelectorAll('.post-tag');
-tags.forEach(tag => {
-    tag.addEventListener('click', () => {
-        tags.forEach(t => t.classList.remove('active'));
-        tag.classList.add('active');
-    });
-});
-
-// Share action
-shareBtn.addEventListener('click', () => {
-    shareBtn.innerHTML = 'Posting⏳';
+document.addEventListener('DOMContentLoaded', () => {
+    const captionInput = document.getElementById('post-caption');
+    const shareBtn = document.getElementById('share-btn');
+    const addPhotoBtn = document.getElementById('add-photo-btn');
+    const realFileInput = document.getElementById('real-file-input');
+    const mediaPreview = document.getElementById('media-preview');
+    const previewImg = document.getElementById('preview-img');
+    const removeMediaBtn = document.getElementById('remove-media');
     
-    setTimeout(() => {
-        alert('Post Published Successfully! 🎉');
-        // Go back to the feed
-        window.history.back();
-    }, 1500);
+    const locationBtn = document.getElementById('add-location-btn');
+    const tagBtn = document.getElementById('add-tag-btn');
+    const projectBtn = document.getElementById('add-project-btn');
+
+    const locOverlay = document.getElementById('location-overlay');
+    const locModal = document.getElementById('location-modal');
+    const tagOverlay = document.getElementById('tag-overlay');
+    const tagModal = document.getElementById('tag-modal');
+    const projOverlay = document.getElementById('project-overlay');
+    const projModal = document.getElementById('project-modal');
+    const privacyOverlay = document.getElementById('privacy-overlay');
+    const privacyModal = document.getElementById('privacy-modal');
+    
+    const selectedLocDisplay = document.getElementById('selected-loc-display');
+    const privacyBtn = document.getElementById('privacy-btn');
+    const privacyText = document.getElementById('privacy-text');
+
+    let finalBase64Image = ""; 
+    let selectedLocation = "";
+    let selectedPrivacy = "Anyone"; 
+
+    function checkInput() {
+        if (captionInput.value.trim() !== '' || finalBase64Image !== '') {
+            shareBtn.disabled = false;
+        } else {
+            shareBtn.disabled = true;
+        }
+    }
+    captionInput.addEventListener('input', checkInput);
+
+    // --- FILE PICKER & COMPRESSION ---
+    addPhotoBtn.addEventListener('click', () => realFileInput.click());
+
+    realFileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    // Compress panrom so DB thaangum
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800; 
+                    const scaleSize = MAX_WIDTH / img.width;
+                    canvas.width = MAX_WIDTH;
+                    canvas.height = img.height * scaleSize;
+                    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    finalBase64Image = canvas.toDataURL('image/jpeg', 0.6); // 60% Quality for testing
+                    previewImg.src = finalBase64Image;
+                    mediaPreview.style.display = 'block';
+                    checkInput();
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    removeMediaBtn.addEventListener('click', () => {
+        mediaPreview.style.display = 'none';
+        previewImg.src = '';
+        finalBase64Image = "";
+        realFileInput.value = ''; 
+        checkInput();
+    });
+
+    // --- MODAL OPEN/CLOSE HELPER ---
+    function openModal(overlay, modal) {
+        overlay.classList.remove('hidden');
+        modal.classList.remove('hidden');
+    }
+    
+    function closeModal(overlay, modal) {
+        modal.classList.add('hidden');
+        setTimeout(() => overlay.classList.add('hidden'), 300);
+    }
+
+    // --- PRIVACY LOGIC ---
+    privacyBtn.addEventListener('click', () => openModal(privacyOverlay, privacyModal));
+    document.getElementById('close-privacy').addEventListener('click', () => closeModal(privacyOverlay, privacyModal));
+    privacyOverlay.addEventListener('click', () => closeModal(privacyOverlay, privacyModal));
+
+    document.querySelectorAll('.privacy-item').forEach(item => {
+        item.addEventListener('click', () => {
+            selectedPrivacy = item.getAttribute('data-value');
+            privacyText.innerText = selectedPrivacy;
+            document.querySelectorAll('.privacy-item svg').forEach(svg => svg.style.color = 'var(--text-muted)');
+            item.querySelector('svg').style.color = 'var(--gold)';
+            closeModal(privacyOverlay, privacyModal);
+        });
+    });
+
+    // --- LOCATION LOGIC ---
+    locationBtn.addEventListener('click', () => openModal(locOverlay, locModal));
+    document.getElementById('close-location').addEventListener('click', () => closeModal(locOverlay, locModal));
+    locOverlay.addEventListener('click', () => closeModal(locOverlay, locModal));
+
+    document.querySelectorAll('.loc-item').forEach(item => {
+        item.addEventListener('click', () => {
+            selectedLocation = item.innerText;
+            selectedLocDisplay.innerText = `📍 ${selectedLocation}`;
+            selectedLocDisplay.style.display = 'block';
+            closeModal(locOverlay, locModal);
+        });
+    });
+
+    // --- TAG PEOPLE LOGIC ---
+    tagBtn.addEventListener('click', () => openModal(tagOverlay, tagModal));
+    document.getElementById('close-tag').addEventListener('click', () => closeModal(tagOverlay, tagModal));
+    tagOverlay.addEventListener('click', () => closeModal(tagOverlay, tagModal));
+
+    document.querySelectorAll('.user-tag-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const username = item.getAttribute('data-username');
+            captionInput.value += ` ${username} `;
+            checkInput();
+            closeModal(tagOverlay, tagModal);
+        });
+    });
+
+    // --- ADD PROJECT LOGIC ---
+    projectBtn.addEventListener('click', () => openModal(projOverlay, projModal));
+    document.getElementById('close-project').addEventListener('click', () => closeModal(projOverlay, projModal));
+    projOverlay.addEventListener('click', () => closeModal(projOverlay, projModal));
+
+    document.querySelectorAll('.project-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const project = item.getAttribute('data-project');
+            captionInput.value += `\n${project}`;
+            checkInput();
+            closeModal(projOverlay, projModal);
+        });
+    });
+
+    const tags = document.querySelectorAll('.post-tag');
+    tags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            tags.forEach(t => t.classList.remove('active'));
+            tag.classList.add('active');
+        });
+    });
+
+    // --- FIREBASE WRITE LOGIC (TESTING MODE) ---
+    shareBtn.addEventListener('click', async () => {
+        shareBtn.innerHTML = 'Posting⏳'; 
+        shareBtn.disabled = true; 
+        
+        try {
+            const postContent = captionInput.value.trim();
+            const activeTagElement = document.querySelector('.post-tag.active');
+            const activeTag = activeTagElement ? activeTagElement.innerText : 'Standard';
+
+            // Save to Firestore Database with the Base64 String directly!
+            await addDoc(collection(db, "posts"), {
+                userName: "Aravinth", 
+                content: postContent,
+                tag: activeTag,
+                location: selectedLocation, 
+                privacy: selectedPrivacy,
+                imageUrl: finalBase64Image, // SAVING COMPRESSED IMAGE AS TEXT
+                likes: 0,
+                commentsCount: 0,
+                timestamp: serverTimestamp() 
+            });
+
+            alert('Post Published Successfully! 🎉');
+            window.location.href = 'index.html'; 
+
+        } catch (error) {
+            console.error("Error adding post: ", error);
+            alert("Oops! Upload aagala. Image size perusa irukkalam.");
+            shareBtn.innerHTML = 'Share';
+            shareBtn.disabled = false;
+        }
+    });
 });

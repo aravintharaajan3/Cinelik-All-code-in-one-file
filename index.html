@@ -1,244 +1,169 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>CineLink - Home</title>
-
     <link rel="stylesheet" href="home.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-
     <div class="app-container">
-
         
-
-        <!-- App Header (Perfectly Centered Logo & Tagline) -->
-
         <header class="app-header">
-
-            <!-- Create Post Button (Top Left) -->
-
-            <div class="header-icon-left" onclick="window.location.href='create-post.html'">
-
+            <div class="header-icon-left" id="create-btn">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-
                 </svg>
-
             </div>
-
             
-
-            <!-- Logo & Tagline (Center) -->
-
             <div class="header-center">
-
                 <h1 class="logo">CINELINK</h1>
-
                 <p class="tagline">Discover Talent. Create Cinema</p>
-
             </div>
-
             
-
-            <!-- Right Icons (Notifications & Inbox) -->
-
             <div class="header-right">
-
                 <div class="notification-icon" onclick="window.location.href='notifications.html'">
-
-                    🔔<span class="badge"></span>
-
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold);">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="badge"></span>
                 </div>
-
-                <div class="chat-icon" onclick="window.location.href='inbox.html'">💬</div>
-
+                <div class="chat-icon" onclick="window.location.href='inbox.html'">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
             </div>
-
         </header>
 
-
-
-        <!-- Stories Section -->
         <div class="story-container">
-            <!-- Your Story (Add Story) -->
-            <div class="story" onclick="alert('Open Camera/Gallery to add a new story!')" style="cursor: pointer;">
+            <div class="story" id="my-story-btn" style="cursor: pointer;">
                 <div class="story-avatar add-story">
-                    <!-- You can put your own profile picture URL here later -->
                     <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="My Story">
                     <span class="add-icon">+</span>
                 </div>
                 <span class="story-name">Your Story</span>
             </div>
             
-            <!-- Story 1 -->
-            <div class="story unread" onclick="alert('Opening Karthik Raj\'s story...')" style="cursor: pointer;">
-                <div class="story-avatar">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Karthik Raj">
-                </div>
+            <div class="story unread">
+                <div class="story-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Karthik Raj"></div>
                 <span class="story-name">Karthik Raj</span>
             </div>
-            
-            <!-- Story 2 -->
-            <div class="story unread" onclick="alert('Opening Meera K\'s story...')" style="cursor: pointer;">
-                <div class="story-avatar">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Meera K">
-                </div>
+            <div class="story unread">
+                <div class="story-avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Meera K"></div>
                 <span class="story-name">Meera K</span>
             </div>
-            
-            <!-- Story 3 -->
-            <div class="story" onclick="alert('Opening Vikram\'s story...')" style="cursor: pointer;">
-                <div class="story-avatar">
-                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" alt="Vikram">
-                </div>
+            <div class="story">
+                <div class="story-avatar"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" alt="Vikram"></div>
                 <span class="story-name">Vikram</span>
             </div>
-            
-            <!-- Story 4 -->
-            <div class="story unread" onclick="alert('Opening Anjali\'s story...')" style="cursor: pointer;">
-                <div class="story-avatar">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Anjali">
-                </div>
-                <span class="story-name">Anjali</span>
-            </div>
-            
-            <!-- Story 5 -->
-            <div class="story" onclick="alert('Opening Arun Kumar\'s story...')" style="cursor: pointer;">
-                <div class="story-avatar">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" alt="Arun Kumar">
-                </div>
-                <span class="story-name">Arun Kumar</span>
-            </div>
-
-            <!-- Story 6 -->
-            <div class="story unread" onclick="alert('Opening Priya\'s story...')" style="cursor: pointer;">
-                <div class="story-avatar">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Priya">
-                </div>
-                <span class="story-name">Priya</span>
-            </div>
         </div>
 
-
-
-        <!-- Main Feed -->
-
-        <main class="feed">
-
-            <!-- Feed Post 1 -->
-
-            <div class="post-card">
-    <div class="post-header">
-        
-        <div class="post-user-info" onclick="location.href='user profile.html?user=karthik'">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="User">
-            <div>
-                <h4>Karthik Raj <span class="verified-icon">✔</span></h4>
-                <p>Director • 2h ago</p>
-            </div>
-        </div>
-        <div class="post-options">⋮</div>
-    </div>
-    <div class="post-content">
-        <p>Wrapping up the final schedule of our upcoming short film "Kanavugal". Thanks to the amazing crew! Need a dedicated colorist for post-production. DM if interested. 🎬✨ #Filmmaking</p>
-        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=600&q=80" alt="Post Image" class="post-image">
-    </div>
-    <div class="post-actions">
-        <div class="action-btn like-btn">🤍 <span>124</span></div>
-        <div class="action-btn">💬 <span>28</span></div>
-        <div class="action-btn">↗️ Share</div>
-        <div class="action-btn save-btn" style="margin-left: auto;">🔖</div>
-    </div>
-</div>
-
-
-
-            <!-- Feed Post 2 -->
-
-            <div class="post-card">
-    <div class="post-header">
-        
-        <div class="post-user-info" onclick="location.href='user profile.html?user=meera'">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="User">
-            <div>
-                <h4>Meera Krishnan</h4>
-                <p>Actress • 5h ago</p>
-            </div>
-        </div>
-        <div class="post-options">⋮</div>
-    </div>
-    <div class="post-content">
-        <p>New headshots updated in my profile! Looking forward to exciting opportunities in web series and feature films. 📸</p>
-        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Post Image" class="post-image">
-    </div>
-    <div class="post-actions">
-        <div class="action-btn like-btn">🤍 <span>450</span></div>
-        <div class="action-btn">💬 <span>56</span></div>
-        <div class="action-btn">↗️ Share</div>
-        <div class="action-btn save-btn" style="margin-left: auto;">🔖</div>
-    </div>
-</div>
-
-            
-
+        <main class="feed" id="feed-container">
             <div class="bottom-padding"></div>
-
         </main>
 
-
-
-        <!-- Bottom Navigation Menu -->
         <nav class="bottom-nav">
-            <!-- ACTIVE CLASS HERE -->
             <div class="nav-item active" onclick="window.location.href='index.html'">
-                <span class="icon">🏠</span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 <span class="label">Home</span>
             </div>
-            
-            <!-- Intha idathula thaan change pannanum -->
             <div class="nav-item" onclick="window.location.href='discover.html'">
-                <span class="icon">🔍</span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <span class="label">Discover</span>
             </div>
-            
-            <!-- Reels Button (Center Elevated) -->
             <div class="nav-item center-reels" onclick="window.location.href='reels.html'">
                 <div class="reels-btn-wrapper">
-                    <span class="reels-icon">🎬</span>
+                    <svg class="reels-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
                 </div>
             </div>
-
             <div class="nav-item" onclick="window.location.href='projects.html'">
-                <span class="icon">📋</span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                 <span class="label">Projects</span>
             </div>
-            
             <div class="nav-item" onclick="window.location.href='profile.html'">
-                <span class="icon">👤</span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 <span class="label">Profile</span>
             </div>
         </nav>
 
+        <div id="story-viewer" class="story-viewer hidden">
+            <div class="story-progress-container"><div class="story-progress-bar" id="story-progress"></div></div>
+            <div class="story-viewer-header">
+                <div class="story-viewer-user">
+                    <img id="sv-avatar" src="" alt="User">
+                    <span id="sv-name">User Name</span>
+                    <span class="story-time">2h</span>
+                </div>
+                <div class="story-viewer-close" id="sv-close">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </div>
+            </div>
+            <img id="sv-image" class="story-viewer-img" src="" alt="Story Content">
+        </div>
+
+        <div id="comment-overlay" class="comment-overlay hidden"></div>
+        <div id="comment-modal" class="comment-modal hidden">
+            <div class="comment-header">
+                <h3>Comments</h3>
+                <span id="close-comments">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </span>
+            </div>
+            <div class="comments-list" id="comments-list"></div>
+            <div class="comment-input-area">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" class="comment-avatar">
+                <input type="text" id="new-comment-input" placeholder="Add a comment...">
+                <button id="post-comment-btn">Post</button>
+            </div>
+        </div>
+
+        <div id="post-options-overlay" class="comment-overlay hidden"></div>
+        <div id="post-options-modal" class="comment-modal hidden" style="height: auto; min-height: auto; padding-bottom: 25px;">
+            <div class="comment-header" style="justify-content: center; position: relative; border-bottom: none; padding-bottom: 10px;">
+                <div style="width: 40px; height: 4px; background: #333; border-radius: 4px; position: absolute; top: 10px;"></div>
+            </div>
+            <div style="padding: 0 20px;">
+                <div class="option-action" data-action="report" style="color: #FF3B30; font-size: 15px; font-weight: 600; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer;">Report</div>
+                <div class="option-action" data-action="unfollow" style="color: #FF3B30; font-size: 15px; font-weight: 600; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer;">Unfollow</div>
+                <div class="option-action" data-action="save" style="color: var(--text-main); font-size: 15px; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer;">Save</div>
+                <div class="option-action" data-action="copy" style="color: var(--text-main); font-size: 15px; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer;">Copy link</div>
+                <div class="option-action" data-action="share" style="color: var(--text-main); font-size: 15px; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer;">Share to...</div>
+                <div class="option-action" data-action="about" style="color: var(--text-main); font-size: 15px; padding: 15px 0; cursor: pointer;">About this account</div>
+            </div>
+        </div>
+
+        <div id="create-options-overlay" class="comment-overlay hidden"></div>
+        <div id="create-options-modal" class="comment-modal hidden" style="height: auto; min-height: auto; padding-bottom: 25px;">
+            <div class="comment-header" style="justify-content: center; position: relative; border-bottom: none; padding-bottom: 10px;">
+                <div style="width: 40px; height: 4px; background: #333; border-radius: 4px; position: absolute; top: 10px;"></div>
+            </div>
+            <div style="padding: 0 20px;">
+                <div class="create-action" data-type="post" style="display: flex; align-items: center; gap: 15px; color: var(--text-main); font-size: 16px; font-weight: 500; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; transition: 0.2s;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    Post
+                </div>
+                <div class="create-action" data-type="reel" style="display: flex; align-items: center; gap: 15px; color: var(--text-main); font-size: 16px; font-weight: 500; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; transition: 0.2s;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                    Reel
+                </div>
+                <div class="create-action" data-type="story" style="display: flex; align-items: center; gap: 15px; color: var(--text-main); font-size: 16px; font-weight: 500; padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; transition: 0.2s;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                    Story
+                </div>
+                <div class="create-action" data-type="live" style="display: flex; align-items: center; gap: 15px; color: var(--text-main); font-size: 16px; font-weight: 500; padding: 15px 0; cursor: pointer; transition: 0.2s;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    Live
+                </div>
+            </div>
+        </div>
+
+        <div id="toast-message" class="toast-message hidden">Action completed</div>
+
     </div>
-
-
-
-    <script src="home.js"></script>
-
+    <script type="module" src="home.js"></script>
 </body>
-
 </html>

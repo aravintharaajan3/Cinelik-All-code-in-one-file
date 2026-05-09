@@ -3,91 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineLink - Showcase</title>
+    <title>CineLink - Reels</title>
     <link rel="stylesheet" href="reels.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
         
-        <div class="reel-container">
-            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&h=1000&q=80" alt="Video Background" class="reel-video-bg">
-            
-            <div class="reel-gradient"></div>
-
-            <header class="reel-header">
-                <div class="back-btn" onclick="window.history.back()" style="cursor: pointer;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </div>
-                <h1 class="header-title">Showcase</h1>
-                <div class="camera-icon">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                        <circle cx="12" cy="13" r="4"></circle>
-                    </svg>
-                </div>
-            </header>
-
-            <div class="play-indicator" id="play-indicator">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        <header class="reel-header">
+            <h1 class="header-title">Reels</h1>
+            <div class="camera-icon" id="main-create-trigger" style="cursor: pointer;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
                 </svg>
             </div>
+        </header>
 
-            <div class="reel-actions">
-                <div class="action-btn" id="like-btn">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon heart-icon">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                    <span class="count" id="like-count">12.4K</span>
-                </div>
-                
-                <div class="action-btn">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
-                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                    </svg>
-                    <span class="count">342</span>
-                </div>
-                
-                <div class="action-btn">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                    <span class="count">Share</span>
-                </div>
-                
-                <div class="action-btn" id="save-btn">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon save-icon">
-                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <span class="count">Save</span>
-                </div>
+        <div class="reels-wrapper" id="reels-wrapper">
             </div>
 
-            <div class="reel-bottom-info">
-                <div class="user-row" style="display: flex; align-items: center; justify-content: space-between;">
-                    
-                    <div class="reel-user-clickable" onclick="location.href='user profile.html?user=meera'" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="User" class="reel-avatar">
-                        <h3 class="reel-username" style="margin: 0;">Meera Krishnan <span class="verified-icon">✔</span></h3>
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                </div>
-                
-                <p class="reel-caption">
-                    Emotional monologue from my latest audition piece. Let me know your thoughts! 🎬🥺 #acting #monologue #cinema
-                </p>
-                
-                <div class="audio-track">
-                    <span class="music-icon">🎵</span>
-                    <marquee scrollamount="4">Original Audio - Meera Krishnan</marquee>
-                </div>
-            </div>
-
+        <div class="play-indicator" id="play-indicator">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="play-icon-svg">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
         </div>
+
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="window.location.href='index.html'">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span class="label">Home</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='discover.html'">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span class="label">Discover</span>
+            </div>
+            
+            <div class="nav-item center-reels active" onclick="window.location.href='reels.html'">
+                <div class="reels-btn-wrapper" style="border-color: transparent; box-shadow: 0 0 15px rgba(255,255,255,0.2);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;">
+                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                        <line x1="7" y1="2" x2="7" y2="22"></line>
+                        <line x1="17" y1="2" x2="17" y2="22"></line>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <line x1="2" y1="7" x2="7" y2="7"></line>
+                        <line x1="2" y1="17" x2="7" y2="17"></line>
+                        <line x1="17" y1="17" x2="22" y2="17"></line>
+                        <line x1="17" y1="7" x2="22" y2="7"></line>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="nav-item" onclick="window.location.href='projects.html'">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                <span class="label">Projects</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='profile.html'">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span class="label">Profile</span>
+            </div>
+        </nav>
+
+        <div class="create-overlay" id="create-overlay">
+            <div class="create-menu">
+                <div class="menu-drag-handle"></div>
+                <h3 class="menu-title">Create</h3>
+                <div class="create-options">
+                    <div class="create-option" data-type="post">
+                        <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+                        <span>Post</span>
+                    </div>
+                    <div class="create-option" data-type="story">
+                        <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></div>
+                        <span>Story</span>
+                    </div>
+                    <div class="create-option" data-type="reel">
+                        <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg></div>
+                        <span>Reel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast-message" class="toast-message hidden">Action completed</div>
+
     </div>
 
     <script src="reels.js"></script>

@@ -28,45 +28,36 @@ body { background-color: #222; display: flex; justify-content: center; align-ite
 .skill-tags { display: flex; gap: 10px; padding: 0 20px 15px; overflow-x: auto; }
 .skill-tags::-webkit-scrollbar { display: none; }
 .tag { background: var(--surface-light); border: 1px solid #333; color: var(--text-main); padding: 5px 10px; border-radius: 15px; font-size: 11px; white-space: nowrap; }
-.profile-stats { display: flex; justify-content: space-between; padding: 15px 20px; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-bottom: 15px; }
+
+/* INSTAGRAM STYLE STATS */
+.profile-stats { display: flex; justify-content: space-evenly; padding: 15px 0px; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-bottom: 15px; }
 .stat-box { text-align: center; }
 .stat-box h4 { color: var(--text-main); font-size: 16px; }
 .stat-box p { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
-.rating h4 span { color: var(--gold); font-size: 12px; }
-.portfolio-section { padding: 0 20px 20px; }
-.section-title { color: var(--text-main); font-size: 16px; margin-bottom: 15px; }
-.portfolio-tabs { display: flex; gap: 20px; border-bottom: 1px solid #333; margin-bottom: 15px; overflow-x: auto; }
-.portfolio-tabs::-webkit-scrollbar { display: none; }
-.tab { color: var(--text-muted); font-size: 13px; padding-bottom: 10px; white-space: nowrap; }
-.tab.active { color: var(--gold); border-bottom: 2px solid var(--gold); font-weight: 600; }
-.portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-.video-card { position: relative; border-radius: 8px; overflow: hidden; }
-.video-thumb { width: 100%; height: 110px; object-fit: cover; }
-.video-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 20px; background: rgba(0,0,0,0.5); width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; }
-.video-time { position: absolute; bottom: 45px; right: 5px; background: rgba(0,0,0,0.7); color: white; font-size: 10px; padding: 2px 4px; border-radius: 4px; }
-.video-info { padding: 5px 0; }
-.video-title { color: var(--text-main); font-size: 12px; font-weight: 600; }
-.video-type { color: var(--text-muted); font-size: 10px; }
-.view-all-btn { width: 100%; background: var(--surface-light); border: none; color: var(--text-main); padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 600; }
-.achievements-section { padding: 0 20px 20px; }
-.achievements-scroll { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
-.achievements-scroll::-webkit-scrollbar { display: none; }
-.achievement-card { min-width: 200px; background: var(--surface-light); border-radius: 8px; padding: 15px; display: flex; align-items: center; gap: 15px; border: 1px solid #333; }
-.ach-icon { font-size: 24px; }
-.ach-info h4 { color: var(--text-main); font-size: 13px; margin-bottom: 3px; }
-.ach-info p { color: var(--text-muted); font-size: 11px; }
+
+.portfolio-section { padding: 0 0px 20px; }
+.portfolio-tabs { display: flex; justify-content: space-around; border-bottom: 1px solid #333; margin-bottom: 5px; }
+.tab { color: var(--text-muted); padding: 10px; cursor: pointer; flex: 1; text-align: center; display: flex; justify-content: center; }
+.tab.active { color: var(--text-main); border-bottom: 2px solid var(--text-main); }
+
+/* PERFECT SQUARE GRID FOR INSTAGRAM LOOK */
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.grid-item { aspect-ratio: 1 / 1; overflow: hidden; background: #111; cursor: pointer; display: flex; align-items: center; justify-content: center; position: relative;}
+.grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.grid-text-preview { padding: 8px; font-size: 10px; color: #aaa; text-align: center; line-height: 1.4; width: 100%; word-break: break-word; }
+
 /* Bottom Navigation */
 .bottom-nav { position: absolute; bottom: 0; width: 100%; background: var(--surface); padding: 12px 25px 25px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #222; z-index: 20; }
 .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); cursor: pointer; transition: 0.3s; flex: 1; }
-.nav-item.active { color: var(--gold); }
-.nav-item .icon { font-size: 20px; margin-bottom: 2px; }
+.nav-item.active { color: var(--text-main); }
+.nav-item svg { margin-bottom: 2px; }
 .nav-item .label { font-size: 10px; font-weight: 500; }
 
 /* Center Reels Button */
 .center-reels { position: relative; flex: 0 0 60px; display: flex; justify-content: center; }
 .reels-btn-wrapper { position: absolute; bottom: 0px; width: 52px; height: 52px; background: var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(245, 197, 24, 0.4); border: 4px solid var(--bg); transition: 0.2s; cursor: pointer; z-index: 30; }
 .reels-btn-wrapper:active { transform: scale(0.95); }
-.reels-icon { font-size: 22px; margin-left: 2px; }
+
 /* Popup CSS */
 .create-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(2px); z-index: 100; display: flex; flex-direction: column; justify-content: flex-end; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
 .create-overlay.active { opacity: 1; pointer-events: all; }
@@ -76,6 +67,6 @@ body { background-color: #222; display: flex; justify-content: center; align-ite
 .menu-title { color: var(--text-main); font-size: 16px; margin-bottom: 25px; text-align: center; font-weight: 600; }
 .create-options { display: flex; justify-content: space-between; }
 .create-option { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; }
-.opt-icon { width: 54px; height: 54px; border-radius: 50%; background: var(--surface-light); border: 1px solid #333; display: flex; justify-content: center; align-items: center; font-size: 22px; transition: all 0.2s ease; }
-.create-option:hover .opt-icon { border-color: var(--gold); background: rgba(245, 197, 24, 0.1); transform: scale(1.05); }
+.opt-icon { width: 54px; height: 54px; border-radius: 50%; background: var(--surface-light); border: 1px solid #333; display: flex; justify-content: center; align-items: center; color: var(--text-main); transition: all 0.2s ease; }
+.create-option:hover .opt-icon { border-color: var(--gold); background: rgba(245, 197, 24, 0.1); transform: scale(1.05); color: var(--gold); }
 .create-option span { color: var(--text-main); font-size: 11px; font-weight: 500; }

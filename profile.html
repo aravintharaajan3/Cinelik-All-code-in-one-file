@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineLink - Profile</title>
     <link rel="stylesheet" href="profile.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
         <header class="profile-header">
-            <div class="header-icon" onclick="window.location.href='settings.html'">⚙️</div>
+            <div class="header-icon" onclick="window.location.href='settings.html'">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
             <div class="logo-container">
                 <h1 class="logo">CINELINK</h1>
                 <p class="tagline">Discover Talent. Create Cinema</p>
             </div>
             <div class="header-actions">
-                <div class="notification"><span>🔔</span><span class="badge">3</span></div>
-                <div class="header-icon">☰</div>
+                <div class="header-icon" id="main-create-trigger" style="cursor: pointer;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </div>
+                <div class="notification" style="cursor: pointer;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span class="badge">3</span>
+                </div>
+                <div class="header-icon" style="cursor: pointer;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </div>
             </div>
         </header>
 
@@ -25,11 +35,13 @@
             <div class="profile-top">
                 <div class="avatar-container">
                     <img id="dyn-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="Profile Avatar" class="profile-avatar">
-                    <div class="camera-badge">📷</div>
+                    <div class="camera-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    </div>
                 </div>
                 <div class="profile-details">
-                    <h2 class="profile-name"><span id="dyn-name">Arun Prasath</span> <span class="verified-icon">✔</span></h2>
-                    <p class="profile-role" id="dyn-role">Actor</p>
+                    <h2 class="profile-name"><span id="dyn-name">Aravinth</span> <span class="verified-icon">✔</span></h2>
+                    <p class="profile-role" id="dyn-role">Founder & Writer</p>
                     <p class="profile-meta">📍 <span id="dyn-location">Chennai, Tamil Nadu</span></p>
                     <p class="profile-meta">🌐 <span id="dyn-languages">Tamil, English</span></p>
                     <div class="verified-tag">🛡️ Verified Talent</div>
@@ -37,33 +49,39 @@
             </div>
 
             <div class="profile-actions">
-                <button class="btn-outline" onclick="window.location.href='edit-profile.html'">✏️ Edit Profile</button>
-                <button class="btn-solid" onclick="window.location.href='premium.html'">🚀 Boost Profile</button>
+                <button class="btn-outline" onclick="window.location.href='edit-profile.html'">Edit Profile</button>
+                <button class="btn-solid" onclick="window.location.href='premium.html'">Boost Profile</button>
             </div>
 
-            <div class="profile-bio"><p id="dyn-bio">Actor by passion. Trying to tell stories that connect. Available for short films, web series & feature films.</p></div>
+            <div class="profile-bio">
+                <p id="dyn-bio">Founder of CineLink 🔥 | Exploring the intersection of Cinema and Technology. Let's create something legendary!</p>
+            </div>
+            
             <div class="skill-tags" id="dyn-skills">
-                <span class="tag">🎭 Acting</span><span class="tag">💬 Dialogues</span><span class="tag">🥺 Emotional</span><span class="tag">💥 Action</span>
+                <span class="tag">📽️ Direction</span><span class="tag">📝 Scriptwriting</span><span class="tag">💻 Tech</span>
             </div>
 
             <div class="profile-stats">
-                <div class="stat-box"><h4 id="dyn-posts">48</h4><p>Posts</p></div>
-                <div class="stat-box"><h4 id="dyn-followers">2,350</h4><p>Followers</p></div>
-                <div class="stat-box"><h4 id="dyn-following">420</h4><p>Following</p></div>
-                <div class="stat-box"><h4 id="dyn-projects">27</h4><p>Projects</p></div>
-                <div class="stat-box rating"><h4><span id="dyn-rating">4.8</span> <span>⭐</span></h4><p>Rating</p></div>
+                <div class="stat-box"><h4 id="dyn-posts">0</h4><p>Posts</p></div>
+                <div class="stat-box"><h4 id="dyn-followers">1,240</h4><p>Followers</p></div>
+                <div class="stat-box"><h4 id="dyn-following">350</h4><p>Following</p></div>
             </div>
 
             <div class="portfolio-section">
-                <h3 class="section-title">Portfolio</h3>
-                <div class="portfolio-tabs"><div class="tab active">🎥 Videos</div><div class="tab">🖼️ Photos</div><div class="tab">🎞️ Reels</div></div>
-                <div class="portfolio-grid" id="portfolio-container"></div>
-                <button class="view-all-btn">View All Videos</button>
-            </div>
-            
-            <div class="achievements-section">
-                <div class="section-header"><h3 class="section-title">Achievements</h3></div>
-                <div class="achievements-scroll" id="achievements-container"></div>
+                <div class="portfolio-tabs">
+                    <div class="tab active" id="tab-grid">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    </div>
+                    <div class="tab">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    </div>
+                    <div class="tab">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                </div>
+
+                <div class="portfolio-grid" id="portfolio-container">
+                    </div>
             </div>
         </main>
 
@@ -72,41 +90,58 @@
                 <div class="menu-drag-handle"></div>
                 <h3 class="menu-title">Create</h3>
                 <div class="create-options">
-                    <div class="create-option"><div class="opt-icon">📝</div><span>Post</span></div>
-                    <div class="create-option"><div class="opt-icon">📸</div><span>Story</span></div>
-                    <div class="create-option"><div class="opt-icon">🎞️</div><span>Reel</span></div>
-                    <div class="create-option"><div class="opt-icon">🎥</div><span>Video</span></div>
-                    <div class="create-option"><div class="opt-icon">🔴</div><span>Live</span></div>
+                    <div class="create-option" onclick="window.location.href='create-post.html'">
+                        <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+                        <span>Post</span>
+                    </div>
+                    <div class="create-option">
+                        <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></div>
+                        <span>Story</span>
+                    </div>
+                    <div class="create-option">
+                        <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg></div>
+                        <span>Reel</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <nav class="bottom-nav">
             <div class="nav-item" onclick="window.location.href='index.html'">
-                <span class="icon">🏠</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 <span class="label">Home</span>
             </div>
             <div class="nav-item" onclick="window.location.href='discover.html'">
-                <span class="icon">🔍</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <span class="label">Discover</span>
             </div>
             
             <div class="nav-item center-reels" onclick="window.location.href='reels.html'">
                 <div class="reels-btn-wrapper">
-                    <span class="reels-icon">🎬</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;">
+                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                        <line x1="7" y1="2" x2="7" y2="22"></line>
+                        <line x1="17" y1="2" x2="17" y2="22"></line>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <line x1="2" y1="7" x2="7" y2="7"></line>
+                        <line x1="2" y1="17" x2="7" y2="17"></line>
+                        <line x1="17" y1="17" x2="22" y2="17"></line>
+                        <line x1="17" y1="7" x2="22" y2="7"></line>
+                    </svg>
                 </div>
             </div>
 
             <div class="nav-item" onclick="window.location.href='projects.html'">
-                <span class="icon">📋</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                 <span class="label">Projects</span>
             </div>
             <div class="nav-item active" onclick="window.location.href='profile.html'">
-                <span class="icon">👤</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 <span class="label">Profile</span>
             </div>
         </nav>
     </div>
-    <script src="profile.js"></script>
+
+    <script type="module" src="profile.js"></script>
 </body>
 </html>

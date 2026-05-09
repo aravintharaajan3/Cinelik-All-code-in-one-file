@@ -9,9 +9,8 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
         <header class="edit-header">
-            <div class="back-btn" onclick="window.history.back()">
+            <div class="back-btn" onclick="window.location.href='profile.html'">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
@@ -20,69 +19,60 @@
             <button class="save-btn" id="save-profile-btn">Save</button>
         </header>
 
-        <!-- Main Content -->
         <main class="content">
-            <!-- Profile Picture Change -->
             <div class="edit-avatar-section">
                 <div class="avatar-wrapper">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="Arun Prasath" class="edit-avatar" id="profile-img">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="edit-avatar" id="profile-img">
                     <div class="change-photo-badge">📷</div>
+                    <input type="file" id="avatar-input" accept="image/*" style="display: none;">
                 </div>
-                <p class="change-photo-text">Change Profile Photo</p>
+                <p class="change-photo-text" id="trigger-photo">Change Profile Photo</p>
             </div>
 
-            <!-- Form Fields -->
             <div class="form-section">
                 <div class="input-group">
                     <label>Full Name</label>
-                    <input type="text" value="Arun Prasath" placeholder="Enter your name">
+                    <input type="text" id="edit-name" value="Aravinth" placeholder="Enter your name">
                 </div>
 
                 <div class="input-group">
                     <label>Primary Role</label>
-                    <select>
-                        <option value="actor" selected>Actor</option>
-                        <option value="actress">Actress</option>
-                        <option value="director">Director</option>
-                        <option value="editor">Editor</option>
-                        <option value="cinematographer">Cinematographer</option>
-                    </select>
+                    <input type="text" id="edit-role" value="Founder & Writer" placeholder="e.g. Actor, Director, Editor">
                 </div>
 
                 <div class="input-group">
                     <label>Location</label>
-                    <input type="text" value="Chennai, Tamil Nadu" placeholder="City, State">
+                    <input type="text" id="edit-loc" value="Chennai, Tamil Nadu" placeholder="City, State">
                 </div>
 
                 <div class="input-group">
                     <label>Bio</label>
-                    <textarea placeholder="Tell creators about yourself...">Actor by passion. Trying to tell stories that connect. Available for short films, web series & feature films.</textarea>
+                    <textarea id="edit-bio" placeholder="Tell creators about yourself...">Founder of CineLink 🔥 | Exploring the intersection of Cinema and Technology.</textarea>
                 </div>
 
                 <div class="input-group">
                     <label>Skills (Comma separated)</label>
-                    <input type="text" value="Acting, Dialogues, Emotional, Action" placeholder="E.g. Editing, VFX, Acting">
+                    <input type="text" id="edit-skills" value="Direction, Scriptwriting, Tech" placeholder="E.g. Editing, VFX, Acting">
                 </div>
 
-                <!-- Social & Portfolio Links -->
                 <h3 class="section-label">Portfolio Links</h3>
                 
                 <div class="input-group">
                     <label>Showreel / YouTube Link</label>
-                    <input type="url" placeholder="https://youtube.com/..." value="https://youtube.com/watch?v=arunreel">
+                    <input type="url" id="edit-yt" placeholder="https://youtube.com/..." value="">
                 </div>
 
                 <div class="input-group">
                     <label>Instagram Username</label>
                     <div class="social-input">
                         <span>@</span>
-                        <input type="text" value="arun_actor_official">
+                        <input type="text" id="edit-insta" value="">
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <script src="edit-profile.js"></script>
+    <script type="module" src="edit-profile.js"></script>
 </body>
 </html>
