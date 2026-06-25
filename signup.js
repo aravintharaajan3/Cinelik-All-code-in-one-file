@@ -2,6 +2,18 @@ import { auth, db } from './firebase-config.js';
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+const toastMessage = document.getElementById('toast-message');
+function showToast(msg) {
+    if(!toastMessage) return;
+    toastMessage.innerText = msg;
+    toastMessage.classList.remove('hidden');
+    toastMessage.classList.add('show');
+    setTimeout(() => {
+        toastMessage.classList.remove('show');
+        setTimeout(() => toastMessage.classList.add('hidden'), 300);
+    }, 2500);
+}
+
 document.getElementById("signupBtn").addEventListener("click", async () => {
     const name = document.getElementById("name").value.trim();
     const contactInfo = document.getElementById("contact-info").value.trim();
@@ -13,28 +25,25 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
     const isPhone = /^\d{10}$/.test(contactInfo);
 
     if (!name || !contactInfo || !password || !confirmPassword) {
-        alert("எல்லா fields-உம் fill பண்ணு da!"); return;
+        showToast("Ellaa fields-um fill pannu da!"); return;
     }
     if (!isEmail && !isPhone) {
-        alert("Correct-aana Email இல்லனா 10-digit Mobile number கொடு machi!"); return;
+        showToast("Correct-aana Email illana 10-digit Mobile number kudu machi!"); return;
     }
     if (password !== confirmPassword) {
-        alert("Password match ஆகல!"); return;
+        showToast("Password match aagala!"); return;
     }
     if (password.length < 6) {
-        alert("Password minimum 6 characters இருக்கணும்!"); return;
+        showToast("Password minimum 6 characters irukkanum!"); return;
     }
     if (!terms) {
-        alert("Terms & Privacy Policy accept பண்ணு!"); return;
+        showToast("Terms & Privacy Policy accept pannu!"); return;
     }
 
-    // 📱 PHONE BLOCKER
     if (isPhone) {
-        alert("Machi, Mobile OTP login இப்போதைக்கு disable பண்ணிருக்கோம்! Testing-க்காக உன்னோட Email வெச்சு Signup பண்ணிக்கோ 😅");
-        return;
+        showToast("Mobile login disabled! Email vachu Signup panniko 😅"); return;
     }
 
-    // 📧 EMAIL FLOW
     try {
         document.getElementById("signupBtn").innerHTML = "Creating... ⏳";
         const userCredential = await createUserWithEmailAndPassword(auth, contactInfo, password);
@@ -48,14 +57,17 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
             createdAt: serverTimestamp()
         });
 
-        alert("Account create ஆச்சு! Welcome to CineLink 🎬");
-        window.location.href = "login.html";
+        showToast("Account create aachu! Welcome to CineLink 🎬");
+        
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1500);
 
     } catch (error) {
         if (error.code === "auth/email-already-in-use") {
-            alert("இந்த Email already registered — Login பண்ணு!");
+            showToast("Intha Email already registered — Login pannu!");
         } else {
-            alert("Signup failed: " + error.message);
+            showToast("Signup failed: " + error.message);
         }
         document.getElementById("signupBtn").innerHTML = "Create Account";
     }

@@ -10,7 +10,7 @@
 <body>
     <div class="app-container">
         <header class="edit-header">
-            <div class="back-btn" onclick="window.location.href='profile.html'">
+            <div class="back-btn" onclick="window.history.back()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
@@ -32,45 +32,57 @@
             <div class="form-section">
                 <div class="input-group">
                     <label>Full Name</label>
-                    <input type="text" id="edit-name" value="Aravinth" placeholder="Enter your name">
+                    <input type="text" id="edit-name" placeholder="Enter your name">
                 </div>
 
                 <div class="input-group">
                     <label>Primary Role</label>
-                    <input type="text" id="edit-role" value="Founder & Writer" placeholder="e.g. Actor, Director, Editor">
+                    <select id="edit-role">
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="Actor / Actress">Actor / Actress</option>
+                        <option value="Director">Director</option>
+                        <option value="Cinematographer">Cinematographer</option>
+                        <option value="Editor">Editor</option>
+                        <option value="Music Director">Music Director</option>
+                        <option value="Writer">Writer</option>
+                        <option value="Producer">Producer</option>
+                        <option value="Crew / Other">Crew / Other</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
                     <label>Location</label>
-                    <input type="text" id="edit-loc" value="Chennai, Tamil Nadu" placeholder="City, State">
+                    <input type="text" id="edit-loc" placeholder="City, State">
                 </div>
 
                 <div class="input-group">
                     <label>Bio</label>
-                    <textarea id="edit-bio" placeholder="Tell creators about yourself...">Founder of CineLink 🔥 | Exploring the intersection of Cinema and Technology.</textarea>
+                    <textarea id="edit-bio" placeholder="Tell creators about yourself..."></textarea>
                 </div>
 
                 <div class="input-group">
                     <label>Skills (Comma separated)</label>
-                    <input type="text" id="edit-skills" value="Direction, Scriptwriting, Tech" placeholder="E.g. Editing, VFX, Acting">
+                    <input type="text" id="edit-skills" placeholder="E.g. Editing, VFX, Acting">
                 </div>
 
                 <h3 class="section-label">Portfolio Links</h3>
                 
                 <div class="input-group">
                     <label>Showreel / YouTube Link</label>
-                    <input type="url" id="edit-yt" placeholder="https://youtube.com/..." value="">
+                    <input type="url" id="edit-yt" placeholder="https://youtube.com/...">
                 </div>
 
                 <div class="input-group">
                     <label>Instagram Username</label>
                     <div class="social-input">
                         <span>@</span>
-                        <input type="text" id="edit-insta" value="">
+                        <input type="text" id="edit-insta">
                     </div>
                 </div>
             </div>
         </main>
+        
+        <div id="toast-message" class="toast-message hidden"></div>
     </div>
 
     <script type="module" src="edit-profile.js"></script>

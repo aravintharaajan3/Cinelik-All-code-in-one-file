@@ -1,12 +1,14 @@
-import { db } from './firebase-config.js';
+import { auth, db } from './firebase-config.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     const saveBtn = document.getElementById('save-profile-btn');
+    const toastMessage = document.getElementById('toast-message');
     
     // Inputs
     const nameInp = document.getElementById('edit-name');
-    const roleInp = document.getElementById('edit-role');
+    const roleInp = document.getElementById('edit-role'); // Ithu ippo Select tag
     const locInp = document.getElementById('edit-loc');
     const bioInp = document.getElementById('edit-bio');
     const skillsInp = document.getElementById('edit-skills');
@@ -20,37 +22,70 @@ document.addEventListener('DOMContentLoaded', async () => {
     const profileImg = document.getElementById('profile-img');
 
     let base64Avatar = "";
+    let currentUser = null;
+
+    function showToast(msg) {
+        if(!toastMessage) return;
+        toastMessage.innerText = msg;
+        toastMessage.classList.remove('hidden');
+        toastMessage.classList.add('show');
+        setTimeout(() => {
+            toastMessage.classList.remove('show');
+            setTimeout(() => toastMessage.classList.add('hidden'), 300);
+        }, 2500);
+    }
 
     // =====================================
-    // 1. FETCH EXISTING DATA FROM FIREBASE
+    // 1. DYNAMIC FETCH WITH AUTH STATE
     // =====================================
-    try {
-        const docSnap = await getDoc(doc(db, "users", "aravinth_profile"));
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            if(data.name) nameInp.value = data.name;
-            if(data.role) roleInp.value = data.role;
-            if(data.location) locInp.value = data.location;
-            if(data.bio) bioInp.value = data.bio;
-            if(data.skills) skillsInp.value = data.skills;
-            if(data.youtube) ytInp.value = data.youtube;
-            if(data.instagram) instaInp.value = data.instagram;
-            if(data.profilePic) {
-                profileImg.src = data.profilePic;
-                base64Avatar = data.profilePic;
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            currentUser = user;
+            try {
+                const docSnap = await getDoc(doc(db, "users", user.uid));
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    
+                    if(data.name) nameInp.value = data.name;
+                    
+                    // Smart Dropdown Selector Logic
+                    if(data.role && data.role !== "New User") {
+                        let optionExists = Array.from(roleInp.options).some(opt => opt.value === data.role);
+                        if (optionExists) {
+                            roleInp.value = data.role;
+                        } else {
+                            // Oruvela pazhaya database-la custom role iruntha atha add panni select pannum
+                            const newOption = new Option(data.role, data.role);
+                            roleInp.add(newOption);
+                            roleInp.value = data.role;
+                        }
+                    }
+                    
+                    if(data.location) locInp.value = data.location;
+                    if(data.bio) bioInp.value = data.bio;
+                    if(data.skills) skillsInp.value = data.skills;
+                    if(data.youtube) ytInp.value = data.youtube;
+                    if(data.instagram) instaInp.value = data.instagram;
+                    if(data.profilePic) {
+                        profileImg.src = data.profilePic;
+                        base64Avatar = data.profilePic;
+                    }
+                } else {
+                    showToast("Profile not found! Please save your details.");
+                }
+            } catch (e) { 
+                console.error("Error fetching profile.", e); 
+                showToast("Error loading profile!");
             }
+        } else {
+            window.location.href = 'login.html';
         }
-    } catch (e) { 
-        console.log("No existing profile found or error fetching.", e); 
-    }
+    });
 
     // =====================================
     // 2. PROFILE PHOTO PICKER & COMPRESSION
     // =====================================
-    function openFilePicker() {
-        avatarInput.click();
-    }
-    
+    function openFilePicker() { avatarInput.click(); }
     avatarWrapper.addEventListener('click', openFilePicker);
     photoTriggerText.addEventListener('click', openFilePicker);
 
@@ -61,19 +96,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             reader.onload = (event) => {
                 const img = new Image();
                 img.onload = () => {
-                    // Profile pictures should be small and square, compressing it!
                     const canvas = document.createElement('canvas');
                     canvas.width = 300; 
                     canvas.height = 300;
                     const ctx = canvas.getContext('2d');
                     
-                    // Draw centered and cropped
                     const size = Math.min(img.width, img.height);
                     const x = (img.width / 2) - (size / 2);
                     const y = (img.height / 2) - (size / 2);
                     ctx.drawImage(img, x, y, size, size, 0, 0, canvas.width, canvas.height);
                     
-                    base64Avatar = canvas.toDataURL('image/jpeg', 0.6); // 60% Quality
+                    base64Avatar = canvas.toDataURL('image/jpeg', 0.7); 
                     profileImg.src = base64Avatar;
                 }
                 img.src = event.target.result;
@@ -83,17 +116,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // =====================================
-    // 3. SAVE DATA TO FIREBASE
+    // 3. DYNAMIC SAVE DATA TO FIREBASE
     // =====================================
     saveBtn.addEventListener('click', async () => {
+        if (!currentUser) {
+            showToast("Session expired! Please login again.");
+            return;
+        }
+
+        // Basic Validation
+        if (!nameInp.value.trim() || !roleInp.value) {
+            showToast("Name and Primary Role kandippa thevai! ⚠️");
+            return;
+        }
+
         saveBtn.innerHTML = 'Saving...';
         saveBtn.disabled = true;
 
         try {
-            // Saving data under "users" collection inside document "aravinth_profile"
-            await setDoc(doc(db, "users", "aravinth_profile"), {
+            await setDoc(doc(db, "users", currentUser.uid), {
                 name: nameInp.value.trim(),
-                role: roleInp.value.trim(),
+                role: roleInp.value, // Dropdown la irunthu theliva value pogum
                 location: locInp.value.trim(),
                 bio: bioInp.value.trim(),
                 skills: skillsInp.value.trim(),
@@ -101,15 +144,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 instagram: instaInp.value.trim(),
                 profilePic: base64Avatar || profileImg.src,
                 updatedAt: serverTimestamp()
-            }, { merge: true });
+            }, { merge: true }); // Merge true pottathaala email overwite aagathu
 
-            alert('Profile Updated Successfully! 🎬');
+            showToast('Profile Updated Successfully! 🎬');
             
-            // Redirecting to profile page to see the fresh changes
-            window.location.href = 'profile.html'; 
+            setTimeout(() => {
+                window.location.href = 'profile.html'; 
+            }, 1500);
+            
         } catch (err) {
             console.error("Error saving profile:", err);
-            alert('Error saving profile. Try again.');
+            showToast('Error saving profile. Try again.');
             saveBtn.innerHTML = 'Save';
             saveBtn.disabled = false;
         }

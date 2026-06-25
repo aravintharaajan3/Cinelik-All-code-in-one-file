@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Subtle Cinematic Background -->
         <div class="bg-overlay"></div>
 
         <div class="onboarding-content">
@@ -18,33 +17,27 @@
                 <p class="step-subtitle">Choose your primary role</p>
             </div>
 
-            <!-- Premium Grid Layout -->
             <div class="role-grid">
                 <div class="role-box" id="role-actor" onclick="selectRole('actor', 'role-actor')">
                     <div class="role-icon">🎭</div>
                     <span>Actor / Actress</span>
                 </div>
-                
                 <div class="role-box" id="role-director" onclick="selectRole('director', 'role-director')">
                     <div class="role-icon">🎬</div>
                     <span>Director</span>
                 </div>
-                
                 <div class="role-box" id="role-editor" onclick="selectRole('editor', 'role-editor')">
                     <div class="role-icon">✂️</div>
                     <span>Editor</span>
                 </div>
-                
                 <div class="role-box" id="role-musician" onclick="selectRole('musician', 'role-musician')">
                     <div class="role-icon">🎵</div>
                     <span>Musician</span>
                 </div>
-                
                 <div class="role-box" id="role-writer" onclick="selectRole('writer', 'role-writer')">
                     <div class="role-icon">✍️</div>
                     <span>Writer</span>
                 </div>
-                
                 <div class="role-box" id="role-crew" onclick="selectRole('crew', 'role-crew')">
                     <div class="role-icon">🎥</div>
                     <span>Crew / Other</span>
@@ -55,6 +48,8 @@
                 <button class="continue-btn" id="continue-btn" disabled>CONTINUE ➔</button>
             </div>
         </div>
+        
+        <div id="toast-message" class="toast-message hidden"></div>
     </div>
 
     <script type="module" src="onboarding.js"></script>
